@@ -80,7 +80,7 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="/" class="act-link">Inicio</a>
+                                        <a href="/public" class="act-link">Inicio</a>
                                     </li>
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>
@@ -177,7 +177,7 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="/" class="act-link">Inicio </a>
+                                        <a href="/public" class="act-link">Inicio </a>
                                     </li>
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>

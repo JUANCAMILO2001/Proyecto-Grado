@@ -46,7 +46,7 @@
                         <div class="bold-separator-login"><span></span></div>
                         <!--Boton de google-->
                         <div class="d-grid gap-2 btn-2">
-                            <a href="/login-google" class="btn-lg ">Ingresar con Google<i class="fal fa-long-arrow-right"></i></a>
+                            <a href="/public/login-google" class="btn-lg ">Ingresar con Google<i class="fal fa-long-arrow-right"></i></a>
                         </div>
                     </form>
                 </div>
