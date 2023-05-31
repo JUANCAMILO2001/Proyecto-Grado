@@ -83,6 +83,9 @@
                                         <a href="/public" class="act-link">Inicio</a>
                                     </li>
                                     <li>
+                                        <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                                    </li>
+                                    <li>
                                         <a href="{{route('products')}}">Productos</a>
                                     </li>
                                     <li><a href="#">Contactos</a></li>
