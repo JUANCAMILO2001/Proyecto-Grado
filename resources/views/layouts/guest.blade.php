@@ -62,7 +62,18 @@
                         <!-- Carrito navbar -->
                         <div class="show-cart sc_btn htact">
                             <i class="fal fa-shopping-bag"></i>
-                            <span class="show-cart_count">12</span>
+                            @php
+                                $totalQuantity = 0;
+                            @endphp
+
+                            @if(session('cart'))
+                                @foreach(session('cart') as $id => $details)
+                                    @php
+                                        $totalQuantity += $details['quantity'];
+                                    @endphp
+                                @endforeach
+                            @endif
+                            <span class="show-cart_count">{{ $totalQuantity }}</span>
                             <span class="header-tooltip">Tu Carrito</span>
                         </div>
 
@@ -97,30 +108,39 @@
                         <!-- container 2 -->
                         <!-- header-cart_wrap modal -->
                         <div class="header-cart_wrap novis_cart">
+                            @php
+                                $totalQuantity = 0;
+                            @endphp
 
-                                <div class="header-cart_title">Tu carrito <span>Numero items <b style="color: #C19D60">1</b></span></div>
+                            @if(session('cart'))
+                                @foreach(session('cart') as $id => $details)
+                                    @php
+                                        $totalQuantity += $details['quantity'];
+                                    @endphp
+                                @endforeach
+                            @endif
+
+                                <div class="header-cart_title">Tu carrito <span>Numero items <b style="color: #C19D60">{{ $totalQuantity }}</b></span></div>
                                 <div class="header-cart_wrap_container fl-wrap">
                                     <div class="box-widget-content">
                                         <div class="widget-posts fl-wrap">
-
+                                            @if(session('cart'))
+                                                @foreach(session('cart') as $id => $details)
                                                 <ul>
                                                     <li class="clearfix">
                                                         <a href="#"  class="widget-posts-img"><img src="./Restabook/images/menu/" class="respimg" alt=""></a>
                                                         <div class="widget-posts-descr">
-                                                            <a href="#" title="">sss</a>
-                                                            <div class="widget-posts-descr_calc clearfix">CNT/PRD:  <span>X</span> $</div>
+                                                            <a href="#" title="">{{ $details['name'] }}</a>
+                                                            <div class="widget-posts-descr_calc clearfix">CNT/PRD: {{ $details['quantity'] }} <span>X</span> $ {{ number_format(intval($details['pay']))  }}</div>
                                                         </div>
-                                                        <form action="" method="POST">
-
-                                                            <input type="hidden" value="" id="id" name="id">
-                                                            <button class="clear-cart_button"><a type="submit"><i class="fal fa-times"></i></a></button>
-                                                        </form>
                                                     </li>
                                                 </ul>
-
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                            @if(session('cart') && count(session('cart')) > 0)
                                 <div class="header-cart_wrap_total fl-wrap">
                                     <div class="header-cart_wrap_total_item">Subtotal : <span></span></div>
                                 </div>
@@ -130,7 +150,9 @@
                                 </div>
 
                                 <div class="header-cart_title" style="display: flex; justify-content: center; align-items: center;">Tu carrito esta vacío</div>
-
+                            @else
+                                <a href="{{ route('products') }}" class="btn btn-primary btn-block">Registra un producto en el carrito</a>
+                            @endif
 
 
                         </div>

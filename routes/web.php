@@ -35,6 +35,10 @@ Route::get('/login-google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/google-callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 Route::get('/products',[ProductsController::class, 'index'])->name('products');
+Route::get('cart', [ProductsController::class, 'cart'])->name('cart');
+Route::post('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('add_to_cart');
+Route::patch('update-cart', [ProductsController::class, 'update'])->name('update_cart');
+Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
 
 
 Route::get('/redirect',[RedirectController::class, 'dashboard']);
