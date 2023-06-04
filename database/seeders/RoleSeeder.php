@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class RoleSeeder extends Seeder
+class   RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -48,6 +48,28 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.users.destroy',
             'description'=> 'Eliminar usuario'
+        ])->syncRoles([$role1]);
+
+        //Permisos admin Roles
+        Permission::create([
+            'name' => 'admin.roles.index',
+            'description'=> 'Lista de Estados Disponibles'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.roles.create',
+            'description'=> 'Creacion de Estados'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.roles.edit',
+            'description'=> 'Edicion de Estados'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.roles.show',
+            'description'=> 'Ver detalles de Estado'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.roles.destroy',
+            'description'=> 'Eliminar Estados'
         ])->syncRoles([$role1]);
 
     }

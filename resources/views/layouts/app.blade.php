@@ -17,6 +17,13 @@
 
     <link id="pagestyle" href="{{ url('admin/css/soft-ui-dashboard.min.css') }}" rel="stylesheet" />
 
+    <style>
+
+        .form-check:not(.form-switch) .form-check-input[type=checkbox]:after{
+            content: none!important;
+        }
+    </style>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -35,7 +42,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  @if($_SERVER['REQUEST_URI'] === "/admin/dashboard") active  @endif" href="{{route('admin.dashboard')}}">
+                    <a class="nav-link  @if($_SERVER['REQUEST_URI'] === "/public/admin/dashboard") active  @endif" href="{{route('admin.dashboard')}}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewbox="0 0 45 40" version="1.1"
@@ -62,7 +69,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($_SERVER['REQUEST_URI'] === "/admin/products" || $_SERVER['REQUEST_URI'] === "/admin/products/create") active  @endif" href="{{route('admin.products.index')}}">
+                    <a class="nav-link  @if($_SERVER['REQUEST_URI'] === "/public/admin/products" || $_SERVER['REQUEST_URI'] === "/public/admin/products/create") active  @endif" href="{{route('admin.products.index')}}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewbox="0 0 42 42" version="1.1"
@@ -179,7 +186,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Configuraciones</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../pages/profile.html">
+                    <a class="nav-link  @if($_SERVER['REQUEST_URI'] === "/public/admin/roles" || $_SERVER['REQUEST_URI'] === "/public/admin/roles/create") active  @endif" href="{{route('admin.roles.index')}}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewbox="0 0 46 42" version="1.1"
@@ -209,7 +216,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link   @if($_SERVER['REQUEST_URI'] === "/admin/users" || $_SERVER['REQUEST_URI'] === "/admin/users/create") active  @endif" href="{{route('admin.users.index')}}">
+                    <a class="nav-link   @if($_SERVER['REQUEST_URI'] === "/public/admin/users" || $_SERVER['REQUEST_URI'] === "/public/admin/users/create") active  @endif" href="{{route('admin.users.index')}}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewbox="0 0 40 44" version="1.1"
@@ -315,9 +322,9 @@
             <i class="fa fa-cog py-2"> </i>
         </a>
         <div class="card shadow-lg ">
-            
+
             <div class="card-header pb-0 pt-3 ">
-                
+
                 <div class="float-end mt-4">
                     <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
                         <i class="fa fa-close"></i>
@@ -354,7 +361,7 @@
                         <p>{{auth()->user()->email}}</p>
                     </div>
                 </div>
-                
+
             </div>
             <hr class="horizontal dark my-1">
             <div class="card-body pt-sm-3 pt-0">

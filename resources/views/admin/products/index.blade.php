@@ -121,7 +121,7 @@
 
     <div class="container-fluid py-4">
         <div class="card">
-            
+
             <div class="card-body table-responsive">
                 <a href="{{route('admin.products.create')}}" class="text-decoration-none" title="Crear Producto">+</a>
                 <table class="table table-hover text-nowrap">
@@ -138,7 +138,7 @@
                     @foreach($products as $product)
                         <tr>
                             <td>
-                                <img style="border-radius: 50%" width="50px" height="50px" src="{{Storage::url($product->imagen)}}" alt="">
+                                <img style="border-radius: 50%" width="50px" height="50px" src="/public/{{Storage::url($product->imagen)}}" alt="">
                                 {{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>$ {{number_format(intval($product->pay))}}</td>
