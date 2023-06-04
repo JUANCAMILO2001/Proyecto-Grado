@@ -124,10 +124,15 @@
         <div class="row ">
             <div class="col-lg-4 mb-lg-0 mb-4">
                 <div class="card z-index-2">
-                    <div class="card-body p-3">
-                        
+                        <img src="https://media.istockphoto.com/id/1306154218/vector/new-product-stamp-imprint-seal-template-vector-stock-illustration.jpg?s=612x612&w=0&k=20&c=EyveKpI3YE5U2qpI44B_iQCWkeW0Nk2bE_1RjxMmuc0=" id="imagenSeleccionada" class="card-img-top img-fluid" width="278px" height="196px">
+                        <div class="card-body p-3">
+                            <h5 class="card-title font-weight-bold" id="resul_name_product">Nombre del Producto</h5>
+                            <p class="card-text pt-3" id="resul_description_product">Descripción del Producto.</p>
+                            <div class="d-flex flex-row-reverse">
+                                <p class="font-weight-bold">Precio:  <span id="resul_price_product"></span></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class="col-lg-8">
                 <div class="card z-index-2">
@@ -135,6 +140,40 @@
                         <h6>Datos del Producto</h6>
                     </div>
                     <div class="card-body p-3">
+                        <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data" >
+                            @csrf
+                            @method('Post')
+                            
+
+                            <div class="mb-3">
+                                <label for="imagen_producto" class="form-label">Seleccione una imagen:</label>
+                                <input class="form-control" type="file" name="imagen" id="imagen_producto">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre_producto">Nombre de su producto:</label>
+                                <input onkeyup="show_name_product(this.value)" type="text" name="name" class="form-control form-control-border" id="nombre_producto" name="nombre_producto" placeholder="Nombre de su Producto">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion_producto">Descripción de su producto:</label>
+                                <textarea onkeyup="show_description_product(this.value)" name="description" class="form-control descricption-product" id="descripcion_producto" name="descripcion_producto" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="precio_producto">Precio de su producto:</label>
+                                <input type="text" oninput="formatearNumero()" name="pay" class="form-control form-control-border" id="precio_producto" name="precio_producto" placeholder="Precio de su Producto">
+                            </div>
+                            <div class="form-group">
+                                <label for="estado_id">Seleccionar el EStadp para su Producto:</label>
+                                <select onchange="mostrarValorSelect()" name="state_id" class="form-select custom-select form-control-border" name="company_id" id="company_id">
+                                    <option value="" selected>--Seleccionar Estado--</option>
+                                    @foreach($states as $state)
+                                        <option value="{{$state->id}}">{{$state->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-block bg-gradient-success btn-lg">Crear Producto</button>
+                            <a href="{{route('admin.products.index')}}" class="btn btn-block bg-gradient-danger btn-lg">Cancelar</a>
+                        </form>
 
                     </div>
                 </div>
@@ -160,4 +199,56 @@
             </div>
         </footer>
     </div>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function (e) {
+        $('#imagen_producto').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+    function show_impo(valor){
+        document.getElementById("resul_ipoconsumo").innerHTML=valor + "%";
+    }
+    function show_name_product(valor){
+        document.getElementById("resul_name_product").innerHTML=valor;
+    }
+    function show_description_product(valor){
+        document.getElementById("resul_description_product").innerHTML=valor;
+    }
+    function show_price_product(valor){
+        document.getElementById("resul_price_product").innerHTML="$" + valor + "COP";
+    }
+    function formatearNumero() {
+        var input = document.getElementById('precio_producto');
+        var valor = input.value;
+
+        if (valor !== "") {
+            var numero = parseFloat(valor);
+            var numeroFormateado = numero.toLocaleString();
+            var resultado = "$ " + numeroFormateado + " COP";
+        } else {
+            var resultado = "";
+        }
+
+        var resultadoElemento = document.getElementById('resul_price_product');
+        resultadoElemento.textContent = resultado;
+    }
+    function mostrarValorSelect() {
+        var select = document.getElementById('company_id');
+        var valor = select.value;
+        var resultado = document.getElementById('resul_company_product');
+
+        if (valor !== "") {
+            resultado.textContent =  valor;
+        } else {
+            resultado.textContent = "";
+        }
+    }
+</script> 
 @endsection

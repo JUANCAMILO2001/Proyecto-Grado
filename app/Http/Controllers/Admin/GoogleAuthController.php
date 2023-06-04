@@ -32,9 +32,9 @@ class GoogleAuthController extends Controller
                 'external_id' => $user->id,
                 'external_auth' => 'google',
                 'state_id' => '1',
-            ]);
+            ])->assignRole('usuario');
             Auth::login($userNew);
         }
-        return redirect('/dashboard');
+        return redirect('/redirect');
     }
 }

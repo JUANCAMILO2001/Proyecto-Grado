@@ -21,8 +21,8 @@
                             @foreach($products as $product)
                                 <!-- hero-menu-item-->
                                 <div class="hero-menu-item" style="height: 112px;">
-                                    <a href="images/menu/1.jpg" class="hero-menu-item-img image-popup">
-                                        <img src="images/menu/thumbnails/1.jpg" alt="">
+                                    <a href="{{Storage::url($product->imagen)}}" class="hero-menu-item-img image-popup">
+                                        <img src="{{Storage::url($product->imagen)}}" alt="">
                                     </a>
                                     <div class="hero-menu-item-title fl-wrap">
                                         <h6>{{$product->name}}</h6>
@@ -40,8 +40,8 @@
                             @foreach($products as $product)
                                 <!-- hero-menu-item-->
                                 <div class="hero-menu-item" style="height: 112px;">
-                                    <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_D-xwPFkAVpXkiwUlS042axHskwWbVtUJg&usqp=CAU" class="hero-menu-item-img image-popup">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_D-xwPFkAVpXkiwUlS042axHskwWbVtUJg&usqp=CAU" alt="">
+                                    <a href="{{Storage::url($product->imagen)}}" class="hero-menu-item-img image-popup">
+                                        <img src="{{Storage::url($product->imagen)}}" alt="">
                                     </a>
                                     <div class="hero-menu-item-title fl-wrap">
                                         <h6>{{$product->name}}</h6>

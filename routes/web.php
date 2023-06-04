@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\GoogleAuthController;
+use App\Http\Controllers\Admin\RedirectController;
 use App\Http\Controllers\ProductsController;
 
 /*
@@ -36,3 +37,4 @@ Route::get('/google-callback', [GoogleAuthController::class, 'handleGoogleCallba
 Route::get('/products',[ProductsController::class, 'index'])->name('products');
 
 
+Route::get('/redirect',[RedirectController::class, 'dashboard']);

@@ -137,9 +137,11 @@
                     <tbody>
                     @foreach($products as $product)
                         <tr>
-                            <td>{{$product->name}}</td>
+                            <td>
+                                <img style="border-radius: 50%" width="50px" height="50px" src="{{Storage::url($product->imagen)}}" alt="">
+                                {{$product->name}}</td>
                             <td>{{$product->description}}</td>
-                            <td>{{$product->pay}}</td>
+                            <td>$ {{number_format(intval($product->pay))}}</td>
                             <td>{{$product->state->name}}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">

@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(DocumentTypeSeeder::class);
 
+        $this->call(RoleSeeder::class);
+
         State::create([
             'name' => 'Disponible',
         ]);
@@ -42,11 +44,44 @@ class DatabaseSeeder extends Seeder
             'lastnames' => 'Ramirez',
             'document_number' => '12222',
             'email' => 'camilo@gmail.com',
-            'password' => Hash::make('admin1'),
+            'password' => Hash::make('admin'),
             'phone' => '12233',
             'document_type' => '111',
             'state_id' => '1',
-        ]);
+        ])->assignRole('admin');
+
+        User::create([
+            'names' => 'Esteban',
+            'lastnames' => 'Escarraga',
+            'document_number' => '12222',
+            'email' => 'esteban@gmail.com',
+            'password' => Hash::make('admin'),
+            'phone' => '12233',
+            'document_type' => '111',
+            'state_id' => '1',
+        ])->assignRole('admin');
+
+        User::create([
+            'names' => 'Cocinero',
+            'lastnames' => 'Delipizza',
+            'document_number' => '12222',
+            'email' => 'cocinero@gmail.com',
+            'password' => Hash::make('cocinero'),
+            'phone' => '12233',
+            'document_type' => '111',
+            'state_id' => '1',
+        ])->assignRole('cocinero');
+        
+        User::create([
+            'names' => 'Usuario',
+            'lastnames' => 'prueba',
+            'document_number' => '12222',
+            'email' => 'usuario@gmail.com',
+            'password' => Hash::make('usuario'),
+            'phone' => '12233',
+            'document_type' => '111',
+            'state_id' => '1',
+        ])->assignRole('usuario');
 
         Product::create([
             'imagen' => 'perrocaliente.png',

@@ -125,8 +125,8 @@
                                 <div class="col-8">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Crear Producto</p>
-                                        <h5 class="font-weight-bolder mb-0">
-                                            0
+                                        <h5 class="font-weight-bolder mb-0" title="Productos Creados">
+                                            {{$total_product}}
                                         </h5>
                                     </div>
                                 </div>
