@@ -28,6 +28,29 @@ class   RoleSeeder extends Seeder
             'description'=> 'Ver dashboard del Admin y cocinero'
         ])->syncRoles([$role1, $role2]);
 
+        //permiso para crear Productos
+        Permission::create([
+            'name' => 'admin.products.index',
+            'description'=> 'Lista de Productos Disponibles'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.products.create',
+            'description'=> 'Creacion de Productos'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.products.edit',
+            'description'=> 'Edicion de Productos'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.products.show',
+            'description'=> 'Ver detalles de Producto'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.products.destroy',
+            'description'=> 'Eliminar Producto'
+        ])->syncRoles([$role1]);
+
+
         //permiso para crear usuario
         Permission::create([
             'name' => 'admin.users.index',
