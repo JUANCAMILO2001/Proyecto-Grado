@@ -40,5 +40,8 @@ Route::post('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name(
 Route::patch('update-cart', [ProductsController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
 
+Route::delete('/cart/clear', [ProductsController::class, 'clear'])->name('clear_cart');
+
+
 
 Route::get('/redirect',[RedirectController::class, 'dashboard']);

@@ -16,7 +16,7 @@ class ProductsController extends Controller
 
     public function cart()
     {
-        return view('cart');
+        return view('user.products.cart');
     }
     public function addToCart($id)
     {
@@ -59,5 +59,11 @@ class ProductsController extends Controller
             }
             session()->flash('success', 'Product successfully removed!');
         }
+    }
+
+    public function clear()
+    {
+        session()->forget('cart');
+        return redirect()->route('cart')->with('success', 'El carrito se ha borrado exitosamente.');
     }
 }

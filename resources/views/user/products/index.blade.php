@@ -28,7 +28,10 @@
                                         <h6>{{$product->name}}</h6>
                                         <div class="hmi-dec" style="left: 162px;"></div>
                                         <span class="hero-menu-item-price">$ {{number_format(intval($product->pay))}}</span>
-                                        <div class="add_cart" title="Añadir al carrito"><a href="">Añadir</a></div>
+                                        <form action="{{ route('add_to_cart', $product->id) }}" method="post" id="add_cart_{{ $loop->iteration }}">
+                                            @csrf
+                                        </form>
+                                        <div class="add_cart" title="Añadir al carrito"><a onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a></div>
                                     </div>
                                     <div class="hero-menu-item-details">
                                         <p>{{$product->description}}</p>

@@ -140,17 +140,25 @@
                                         </div>
                                     </div>
                                 </div>
+                            @if(session('cart'))
+                                @php $total = 0 @endphp
+                                @foreach(session('cart') as $id => $details)
+                                    @php
+                                        $total += $details['pay'] * $details['quantity'];
+                                    @endphp
+                                @endforeach
+                            @endif
                             @if(session('cart') && count(session('cart')) > 0)
                                 <div class="header-cart_wrap_total fl-wrap">
-                                    <div class="header-cart_wrap_total_item">Subtotal : <span></span></div>
+                                    <div class="header-cart_wrap_total_item">Total: $ {{number_format(intval($total))}} <span></span></div>
                                 </div>
                                 <div class="header-cart_wrap_footer fl-wrap">
-                                    <a href=""> Ver Carro</a>
+                                    <a href="{{route('cart')}}"> Ver Carro</a>
                                     <a href="#">Pagar Ahora</a>
                                 </div>
 
-                                <div class="header-cart_title" style="display: flex; justify-content: center; align-items: center;">Tu carrito esta vacío</div>
                             @else
+                                <div class="header-cart_title" style="display: flex; justify-content: center; align-items: center;">Tu carrito esta vacío</div>
                                 <a href="{{ route('products') }}" class="btn btn-primary btn-block">Registra un producto en el carrito</a>
                             @endif
 
@@ -302,6 +310,7 @@
         });
     }
 </script>
+@yield('js')
 
 </body>
 </html>
