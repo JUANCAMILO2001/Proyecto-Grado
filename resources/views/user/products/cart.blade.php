@@ -60,7 +60,7 @@
                                         @php $total += $details['pay'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
                                             <td>
-                                                <a><img src="{{Storage::url($details['imagen'])}}" class="respimg"></a>
+                                                <a><img src="public{{Storage::url($details['imagen'])}}" class="respimg"></a>
                                             </td>
                                             <td>
                                                 <h5 class="product-name">{{$details['name']}}</h5>
