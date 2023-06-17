@@ -1,7 +1,7 @@
 {
     "name": "Delipizza",
     "short_name": "LPT",
-    "start_url": "public/",
+    "start_url": "/public/",
     "background_color": "#ffffff",
     "description": "Delipizza",
     "display": "fullscreen",
