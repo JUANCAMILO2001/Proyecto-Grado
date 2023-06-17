@@ -41,17 +41,19 @@
                                 <!-- Modal -->
                                 <section class="modal" id="modal_{{ $loop->iteration }}">
                                     <div class="modal__container">
-                                        <img class="modal__img" src="/public{{ Storage::url($product->imagen) }}" alt="">
-                                        <h6>{{ $product->name }}</h6>
+                                        <div>
+                                            <img class="modal__img" src="/public{{ Storage::url($product->imagen) }}" alt="">
+                                        </div>
+                                        <div>
+                                            <h6>{{ $product->name }}</h6>
                                         <span class="hero-menu-item-price">$ {{ number_format(intval($product->pay)) }}</span>
                                         <form action="{{ route('add_to_cart', $product->id) }}" method="post" id="add_cart_{{ $loop->iteration }}">
                                             @csrf
                                         </form>
-                                        <div class="add_cart" title="Añadir al carrito">
-                                            <a onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a>
-                                        </div>
+                                        
                                         <textarea name="" id="" cols="30" rows="10"></textarea>
                                         <a style="background-color: green;color: white;height: 23px;width: 75px;border-radius: 5px;" onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a>
+                                        </div>
                                         <a href="#" class="modal__close">Cerrar producto</a>
                                     </div>
                                 </section>
