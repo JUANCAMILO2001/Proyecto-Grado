@@ -4560,6 +4560,9 @@ cite.fn .star-rating {
         margin-left:0;
         margin-top:40px;
     }
+    .close-modal{
+
+    }
 }
 @media only screen and (max-width: 1064px) {
     .nav-button-wrap {
@@ -4739,8 +4742,14 @@ cite.fn .star-rating {
         height: 165%;
         top: 0%;
     }
+    .close-modal{
+
+    }
 }
 @media only screen and (max-width: 768px) {
+    .close-modal{
+
+    }
     .inline-facts-wrap {
         width: 50%;
         margin-bottom:10px;
@@ -4894,6 +4903,9 @@ cite.fn .star-rating {
     .table-cart table {
         min-width: 800px;
     }
+    .close-modal{
+
+    }
 }
 @media only screen and (max-width: 560px) {
     .main-header .container , .inline-facts-wrap , .gallery-item , .single-menu .hero-menu_header li , .two-column .gallery-item  {
@@ -5021,6 +5033,10 @@ cite.fn .star-rating {
     .menu-wrapper-title:before{
         display: none;
     }
+    .close-modal{
+        margin-top: -301px!important;
+        margin-left: 378px!important;
+    }
     .big-number a {
         font-size: 20px;
     }
@@ -5041,6 +5057,9 @@ cite.fn .star-rating {
     }
 }
 @media only screen and (max-width: 375px) {
+    .close-modal{
+
+    }
     .vismobmenu {
         right:34px;
     }
@@ -5067,6 +5086,9 @@ cite.fn .star-rating {
 }
 
 @media only screen and (max-width: 410px) {
+    .close-modal{
+
+    }
     .show-cart , .show-share-btn  {
         float:right;
         font-size:22px;
@@ -5091,6 +5113,9 @@ cite.fn .star-rating {
 }
 
 @media only screen and (max-width: 355px) {
+    .close-modal{
+
+    }
     .hero-title-wrap{
         top: 20%;
     }
