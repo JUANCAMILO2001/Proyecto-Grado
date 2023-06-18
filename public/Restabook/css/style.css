@@ -5053,6 +5053,10 @@ cite.fn .star-rating {
     .header-cart_wrap_footer{
         margin-left: 14px!important;
     }
+    .modal__container{
+        max-height: 105%!important;
+        margin-top: 24px!important;
+    }
 
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
