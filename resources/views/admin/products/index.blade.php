@@ -6,7 +6,7 @@
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Dasboard</a>
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Inicio</a>
                     </li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Listar Productos</li>
                 </ol>
@@ -140,7 +140,7 @@
                             <td>
                                 <img style="border-radius: 50%" width="50px" height="50px" src="/public/{{Storage::url($product->imagen)}}" alt="">
                                 {{$product->name}}</td>
-                            <td>{{$product->description}}</td>
+                            <td style="cursor: pointer" title="{{$product->description}}">{{ Str::limit($product->description, 21, '...') }}</td>
                             <td>$ {{number_format(intval($product->pay))}}</td>
                             <td>{{$product->state->name}}</td>
                             <td>

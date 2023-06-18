@@ -6,7 +6,7 @@
         navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+                <h6 class="font-weight-bolder mb-0">Inicio</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
 
@@ -118,13 +118,13 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="{{route('admin.products.create')}}">
+                <a href="{{route('admin.products.index')}}">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Crear Producto</p>
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Listar Productos</p>
                                         <h5 class="font-weight-bolder mb-0" title="Productos Creados">
                                             {{$total_product}}
                                         </h5>
@@ -142,13 +142,13 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="{{route('admin.users.create')}}">
+                <a href="{{route('admin.users.index')}}">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Crear Usuario</p>
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Listar Usuarios</p>
                                         <h5 class="font-weight-bolder mb-0" title="Usuarios Creados">
                                             {{$total_user}}
                                         </h5>
@@ -170,7 +170,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Pedidos</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Listar Pedidos</p>
                                     <h5 class="font-weight-bolder mb-0">
                                         0
                                     </h5>
@@ -191,7 +191,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Balances</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Ver Balances</p>
                                     <h5 class="font-weight-bolder mb-0">
                                         0
                                     </h5>

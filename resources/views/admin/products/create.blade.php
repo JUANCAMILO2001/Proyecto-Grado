@@ -7,7 +7,7 @@
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Dasboard</a>
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Inicio</a>
                     </li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Crear Productos</li>
                 </ol>
@@ -124,7 +124,7 @@
         <div class="row ">
             <div class="col-lg-4 mb-lg-0 mb-4">
                 <div class="card z-index-2">
-                        <img src="https://media.istockphoto.com/id/1306154218/vector/new-product-stamp-imprint-seal-template-vector-stock-illustration.jpg?s=612x612&w=0&k=20&c=EyveKpI3YE5U2qpI44B_iQCWkeW0Nk2bE_1RjxMmuc0=" id="imagenSeleccionada" class="card-img-top img-fluid" width="278px" height="196px">
+                        <img src="{{url('images/productos-lacteos.gif')}}" id="imagenSeleccionada" class="card-img-top img-fluid" width="278px" height="196px">
                         <div class="card-body p-3">
                             <h5 class="card-title font-weight-bold" id="resul_name_product">Nombre del Producto</h5>
                             <p class="card-text pt-3" id="resul_description_product">Descripción del Producto.</p>
@@ -143,7 +143,7 @@
                         <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data" >
                             @csrf
                             @method('Post')
-                            
+
 
                             <div class="mb-3">
                                 <label for="imagen_producto" class="form-label">Seleccione una imagen:</label>
@@ -250,5 +250,5 @@
             resultado.textContent = "";
         }
     }
-</script> 
+</script>
 @endsection
