@@ -5041,6 +5041,18 @@ cite.fn .star-rating {
     .table-cart table {
         min-width: 800px;
     }
+    .header-cart_title{
+        margin-left: 18px!important;
+    }
+    .header-cart_wrap_container{
+        margin-left: 18px!important;
+    }
+    .header-cart_wrap_total{
+        margin-left: 18px!important;
+    }
+    .header-cart_wrap_footer{
+        margin-left: 14px!important;
+    }
 
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {

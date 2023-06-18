@@ -184,7 +184,7 @@
         .modal__close:hover{
             color: #fff;
             font-weight: bold;
-            background-color: #292929;
+            background-color: #C19D60;
         }
 
         .modal__agregar{
@@ -204,7 +204,7 @@
         .modal__agregar:hover{
             color: #fff;
             font-weight: bold;
-            background-color: #292929;
+            background-color: #C19D60;
         }
 
 
