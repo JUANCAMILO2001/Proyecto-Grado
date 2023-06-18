@@ -18,20 +18,22 @@ class ProductsController extends Controller
     {
         return view('user.products.cart');
     }
-    public function addToCart($id)
+    public function addToCart($id,Request $request)
     {
+
         $product = Product::findOrFail($id);
 
         $cart = session()->get('cart', []);
 
         if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity']+= $request->quantity;
         }  else {
             $cart[$id] = [
                 "name" => $product->name,
                 "imagen" => $product->imagen,
                 "pay" => $product->pay,
-                "quantity" => 1
+                "quantity" => $request->quantity,
+                "comment" => $request->comment,
             ];
         }
 
@@ -48,6 +50,16 @@ class ProductsController extends Controller
             session()->flash('success', 'Cart successfully updated!');
         }
     }
+    public function updateComment(Request $request)
+    {
+        if ($request->id && $request->comment) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["comment"] = $request->comment;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Comment successfully updated!');
+        }
+    }
+
 
     public function remove(Request $request)
     {

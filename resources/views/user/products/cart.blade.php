@@ -50,8 +50,10 @@
                                         <th>Nombre</th>
                                         <th>Precio</th>
                                         <th>Subtotal</th>
+                                        <th>Comentario</th>
                                         <th>Cantidad</th>
-                                        <th>Eliminar</th>
+                                        <th>Acciones</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,25 +61,31 @@
                                     @foreach(session('cart') as $id => $details)
                                         @php $total += $details['pay'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
-                                            <td>
+                                            <td class="pr-remove">
                                                 <a><img src="/public{{Storage::url($details['imagen'])}}" class="respimg"></a>
                                             </td>
 
-                                            <td>
+                                            <td class="pr-remove">
                                                 <h5 class="product-name">{{$details['name']}}</h5>
                                             </td>
-                                            <td>
+                                            <td class="pr-remove">
                                                 <h5 class="order-money">${{number_format(intval($details['pay']))}}</h5>
                                             </td>
-                                            <td>
+                                            <td class="pr-remove">
                                                 <h5 class="order-money">${{ number_format(intval($details['pay'] * $details['quantity'])) }}</h5>
                                             </td>
                                             <td>
+                                                <textarea name="comment" class="order-comment" rows="4">{{ $details['comment'] }}</textarea>
+                                            </td>
+                                            <td class="pr-remove">
                                                 <input type="number" name="quantity" id="quantity" value="{{ $details['quantity'] }}" min="1" class="order-count cart_update">
                                             </td>
                                             <td class="pr-remove">
                                                 <input type="hidden" value="1" id="id" name="id">
                                                 <button class="cart_remove" title="Eliminar"><i class="material-symbols-outlined">close</i></button>
+                                            </td>
+                                            <td class="pr-remove"> <!-- Added the 'Editar' button -->
+                                                <button class="cart_edit" title="Editar"><i class="material-symbols-outlined">edit</i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -138,6 +146,8 @@
     </div>
 @endsection
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script type="text/javascript">
         $(".cart_update").change(function (e) {
             e.preventDefault();
@@ -181,6 +191,40 @@
                     }
                 });
             }
+        });
+        $("textarea.order-comment").on("input", function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+            var row = ele.closest("tr");
+            var productId = row.attr("data-id");
+            var comment = ele.val();
+
+            $.ajax({
+                url: '{{ route('update_comment') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId,
+                    comment: comment
+                },
+                success: function (response) {
+                    // Actualizar la interfaz o mostrar un mensaje de éxito si es necesario
+                }
+            });
+        });
+
+        $(".cart_edit").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+            var row = ele.closest("tr");
+            var productId = row.attr("data-id");
+
+            // Code for handling the edit functionality goes here
+
+            // Example alert to show that the button click is being triggered
+            alert("Se edito el comentario del producto: " + productId);
         });
     </script>
 @endsection

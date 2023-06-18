@@ -53,21 +53,22 @@
                                             </div>
                                             <form action="{{ route('add_to_cart', $product->id) }}" method="post" id="add_cart_{{ $loop->iteration }}">
                                                 @csrf
-                                            </form>
-                                            <div class="text-modal coment-modal">
-                                                <p class="sub-title-modal">Comentario para tu pedido:</p>
-                                                <textarea name="" id="" cols="30" rows="6"></textarea>
-                                            </div>
-                                            <div class="text-modal ">
-                                                <p class="sub-title-modal">Cantidad</p>
-                                                <div class="center-quantity">
-                                                    <div class="number-input">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                                                        <input required class="quantity" min="0" name="quantity" value="0" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                <div class="text-modal coment-modal">
+                                                    <p class="sub-title-modal">Comentario para tu pedido:</p>
+                                                    <textarea name="comment" id="comment" cols="30" rows="6"></textarea>
+                                                </div>
+                                                <div class="text-modal ">
+                                                    <p class="sub-title-modal">Cantidad</p>
+                                                    <div class="center-quantity">
+                                                        <div class="number-input">
+                                                            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                                                            <input required class="quantity" min="0" name="quantity" value="0" type="number">
+                                                            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
+
                                             <div class="btn-modal">
                                                 <a class="modal__agregar" onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a>
                                                 <a class="modal__close">Cancelar</a>
@@ -106,6 +107,15 @@
 @endsection
 @section('style')
     <style>
+        .lg-toolbar .lg-close:after {
+            display: none;
+        }
+        #lg-zoom-in:after {
+            display: none;
+        }
+        #lg-zoom-out:after {
+            display: none;
+        }
         .modal{
             position: fixed;
             top: 0;
@@ -201,7 +211,7 @@
         .close-modal{
             position: absolute;
             margin-right: 100px;
-            margin-top: -367px;
+            margin-top: -337px;
             margin-left: 703px;
         }
         .btn-close-modal{
