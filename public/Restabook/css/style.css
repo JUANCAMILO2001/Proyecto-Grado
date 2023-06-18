@@ -5011,7 +5011,16 @@ cite.fn .star-rating {
     .menu-wrapper.single-menu .hero-menu-item:nth-child(even)  , .menu-wrapper.single-menu .hero-menu-item:nth-child(even) {
         padding-right:0;
     }
-
+    .gird-modal-content{
+        max-height: 195px!important;
+    }
+    .modal__img{
+        border-radius: 50%!important;
+        width: 126px!important;
+    }
+    .menu-wrapper-title:before{
+        display: none;
+    }
     .big-number a {
         font-size: 20px;
     }
