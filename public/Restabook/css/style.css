@@ -5002,8 +5002,11 @@ cite.fn .star-rating {
         text-align:left;
         width:calc(100% - 90px);
     }
-    .add_cart {
-        bottom:0;
+    .menu-wrapper-title:after{
+        display: none;
+    }
+    .modal__container{
+        display: grid!important;
     }
     .menu-wrapper.single-menu .hero-menu-item:nth-child(even)  , .menu-wrapper.single-menu .hero-menu-item:nth-child(even) {
         padding-right:0;
