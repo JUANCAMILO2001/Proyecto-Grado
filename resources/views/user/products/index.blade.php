@@ -182,9 +182,9 @@
         }
 
         .modal__close:hover{
-            color: black;
+            color: #fff;
             font-weight: bold;
-            background-color: #C19D60;
+            background-color: #292929;
         }
 
         .modal__agregar{
@@ -202,9 +202,9 @@
         }
 
         .modal__agregar:hover{
-            color: black;
+            color: #fff;
             font-weight: bold;
-            background-color: #C19D60;
+            background-color: #292929;
         }
 
 
