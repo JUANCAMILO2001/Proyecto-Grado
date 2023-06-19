@@ -19,6 +19,7 @@
     <meta name="theme-color" content="#6777ef"/>
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
     @yield('style')
 </head>
 <body>
@@ -120,7 +121,6 @@
                                     @endphp
                                 @endforeach
                             @endif
-
                                 <div class="header-cart_title">Tu carrito <span>Numero items <b style="color: #C19D60">{{ $totalQuantity }}</b></span></div>
                                 <div class="header-cart_wrap_container fl-wrap">
                                     <div class="box-widget-content">
@@ -297,7 +297,7 @@
         <div class="element-item"></div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="{{url('Restabook/js/jquery.min.js')}}"></script>
 <script src="{{url('Restabook/js/plugins.js')}}"></script>
 <script src="{{url('Restabook/js/scripts.js')}}"></script>

@@ -7,6 +7,7 @@
             <section>
                 <div class="container">
                     <!-- menu-wrapper-->
+
                     <div class="menu-wrapper single-menu fl-wrap" id="menu-section-1" data-scrollax-parent="true">
                         <div class="menu-wrapper-title fl-wrap">
                             <div class="menu-wrapper-title-item">
@@ -18,8 +19,21 @@
                             <span class="menu-wrapper-title_number"><i class="fa fa-cutlery" aria-hidden="true"></i></span>
                         </div>
                         @if(auth()->check())
+
+
+
+                            @if(Session('success'))
+                                <div class="alert hide success">
+                                    <span class="fas fa-check-circle"></span>
+                                    <span class="msg">{{ session('success') }}</span>
+                                    <div class="close-btn">
+                                        <span class="fas fa-times"></span>
+                                    </div>
+                                </div>
+                            @endif
                             @foreach($products as $product)
                                 <!-- hero-menu-item -->
+
                                 <div class="hero-menu-item" style="height: 112px;">
                                     <a href="/public/{{ Storage::url($product->imagen) }}" class="hero-menu-item-img image-popup">
                                         <img src="/public/{{ Storage::url($product->imagen) }}" alt="">
@@ -106,6 +120,115 @@
         </div>
 @endsection
 @section('style')
+    <style>
+        .alert {
+            padding: 20px 40px;
+            min-width: 269px;
+            position: absolute;
+            right: -18px;
+            top: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 8;
+        }
+
+        .alert.showAlert {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .alert.show {
+            animation: show_slide 1s ease forwards;
+        }
+
+        @keyframes show_slide {
+            0% {
+                transform: translateX(100%);
+            }
+            40% {
+                transform: translateX(-10%);
+            }
+            80% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-10px);
+            }
+        }
+
+        .alert.hide {
+            animation: hide_slide 1s ease forwards;
+        }
+
+        @keyframes hide_slide {
+            0% {
+                transform: translateX(-10px);
+            }
+            40% {
+                transform: translateX(0%);
+            }
+            80% {
+                transform: translateX(-10%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .alert .fas {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+        }
+
+        .alert .msg {
+            padding: 0 62px;
+            font-size: 13px;
+        }
+
+        .alert .close-btn {
+            position: absolute;
+            right: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 20px 18px;
+            cursor: pointer;
+        }
+
+        .alert.warning {
+            background: #ffdb9b;
+            border-left: 8px solid #ffa502;
+        }
+
+        .alert.warning .fas {
+            left: 20px;
+            color: #ce8500;
+        }
+
+        .alert.success {
+            background: #b7e8a5;
+            border-left: 8px solid #7ed321;
+        }
+
+        .alert.success .fas {
+            left: 20px;
+            color: #4caf50;
+        }
+
+        .alert.error {
+            background: #ff9b9b;
+            border-left: 8px solid #ff2929;
+        }
+
+        .alert.error .fas {
+            left: 20px;
+            color: #f44336;
+        }
+
+    </style>
     <style>
         .lg-toolbar .lg-close:after {
             display: none;
@@ -346,6 +469,44 @@
     </style>
 @endsection
 @section('js')
+    <script>
+        $('#warningBtn').click(function(){
+            $('.alert.warning').addClass("show");
+            $('.alert.warning').removeClass("hide");
+            $('.alert.warning').addClass("showAlert");
+            setTimeout(function(){
+                $('.alert.warning').removeClass("show");
+                $('.alert.warning').addClass("hide");
+            },5000);
+        });
+
+        $(document).ready(function(){
+            $('.alert.success').addClass("show");
+            $('.alert.success').removeClass("hide");
+            $('.alert.success').addClass("showAlert");
+            setTimeout(function(){
+                $('.alert.success').removeClass("show");
+                $('.alert.success').addClass("hide");
+            },5000);
+        });
+
+        $('#errorBtn').click(function(){
+            $('.alert.error').addClass("show");
+            $('.alert.error').removeClass("hide");
+            $('.alert.error').addClass("showAlert");
+            setTimeout(function(){
+                $('.alert.error').removeClass("show");
+                $('.alert.error').addClass("hide");
+            },5000);
+        });
+
+        $('.close-btn').click(function(){
+            $(this).parent().removeClass("show");
+            $(this).parent().addClass("hide");
+        });
+
+
+    </script>
     <script>
         const openModal = document.querySelectorAll('.hero__cta');
         const modals = document.querySelectorAll('.modal');
