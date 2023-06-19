@@ -40,8 +40,8 @@
         <!-- header-top  -->
         <div class="header-inner  fl-wrap">
             @if(auth()->check())
-
-                <div class="container">
+                @if(auth()->user()->hasRole('admin'))
+                    <div class="container">
                     <div class="header-container fl-wrap">
                         <!-- logo -->
                         <a href="/" class="logo-holder">
@@ -101,7 +101,7 @@
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>
                                     </li>
-                                    <li><a href="#">Contactos</a></li>
+                                    <li><a href="/contact">Contactos</a></li>
 
                                 </ul>
                             </nav>
@@ -167,6 +167,261 @@
                         </div>
                     </div>
                 </div>
+                @elseif(auth()->user()->hasRole('cocinero'))
+                    <div class="container">
+                        <div class="header-container fl-wrap">
+                            <!-- logo -->
+                            <a href="/" class="logo-holder">
+                                <img src="{{url('Restabook/images/Delipizza.png')}}" alt="">
+                            </a>
+                            <form action="{{route('logout')}}" method="post" id="cerrar">
+                                @csrf
+                            </form>
+                            <!-- Cerrar Sesion -->
+                            <div class="show-share-btn showshare htact ">
+                                <a onclick="document.getElementById('cerrar').submit()">
+                                    <i class="material-symbols-outlined" style="color: #666;padding-top: 24px;">
+                                        logout
+                                    </i>
+
+                                    <span class="header-tooltip">Cerrar Sesión</span>
+                                </a>
+                            </div>
+
+                            <!-- Carrito navbar -->
+                            <div class="show-cart sc_btn htact">
+                                <i class="fal fa-shopping-bag"></i>
+                                @php
+                                    $totalQuantity = 0;
+                                @endphp
+
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $totalQuantity += $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                <span class="show-cart_count">{{ $totalQuantity }}</span>
+                                <span class="header-tooltip">Tu Carrito</span>
+                            </div>
+
+                            <!-- nav-button-wrap responsive-->
+                            <div class="nav-button-wrap">
+                                <div class="nav-button">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <!--  navigation  de navs-->
+                            <div class="nav-holder main-menu">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/public" class="act-link">Inicio</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('products')}}">Productos</a>
+                                        </li>
+                                        <li><a href="/contact">Contactos</a></li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- container 2 -->
+                            <!-- header-cart_wrap modal -->
+                            <div class="header-cart_wrap novis_cart">
+                                @php
+                                    $totalQuantity = 0;
+                                @endphp
+
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $totalQuantity += $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                <div class="header-cart_title">Tu carrito <span>Numero items <b style="color: #C19D60">{{ $totalQuantity }}</b></span></div>
+                                <div class="header-cart_wrap_container fl-wrap">
+                                    <div class="box-widget-content">
+                                        <div class="widget-posts fl-wrap">
+                                            @if(session('cart'))
+                                                @foreach(session('cart') as $id => $details)
+                                                    <ul>
+                                                        <li class="clearfix">
+                                                            <a href="#"  class="widget-posts-img"><img src="/public{{Storage::url($details['imagen'])}}" class="respimg" alt=""></a>
+                                                            <div class="widget-posts-descr">
+                                                                <a href="#" title="">{{ $details['name'] }}</a>
+                                                                <div class="widget-posts-descr_calc clearfix">CNT/PRD: {{ $details['quantity'] }} <span>X</span> $ {{ number_format(intval($details['pay']))  }}</div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(session('cart'))
+                                    @php $total = 0 @endphp
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $total += $details['pay'] * $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                @if(session('cart') && count(session('cart')) > 0)
+                                    <div class="header-cart_wrap_total fl-wrap">
+                                        <div class="header-cart_wrap_total_item">Total: $ {{number_format(intval($total))}} <span></span></div>
+                                    </div>
+                                    <div class="header-cart_wrap_footer fl-wrap">
+                                        <a href="{{route('cart')}}"> Ver Carro</a>
+                                        <a href="#">Pagar Ahora</a>
+                                    </div>
+
+                                @else
+                                    <div class="header-cart_title" style="display: flex; justify-content: center; align-items: center;">Tu carrito esta vacío</div>
+                                    <a href="{{ route('products') }}" class="btn btn-primary btn-block">Registra un producto en el carrito</a>
+                                @endif
+
+
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="container">
+                        <div class="header-container fl-wrap">
+                            <!-- logo -->
+                            <a href="/" class="logo-holder">
+                                <img src="{{url('Restabook/images/Delipizza.png')}}" alt="">
+                            </a>
+                            <form action="{{route('logout')}}" method="post" id="cerrar">
+                                @csrf
+                            </form>
+                            <!-- Cerrar Sesion -->
+                            <div class="show-share-btn showshare htact ">
+                                <a onclick="document.getElementById('cerrar').submit()">
+                                    <i class="material-symbols-outlined" style="color: #666;padding-top: 24px;">
+                                        logout
+                                    </i>
+
+                                    <span class="header-tooltip">Cerrar Sesión</span>
+                                </a>
+                            </div>
+
+                            <!-- Carrito navbar -->
+                            <div class="show-cart sc_btn htact">
+                                <i class="fal fa-shopping-bag"></i>
+                                @php
+                                    $totalQuantity = 0;
+                                @endphp
+
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $totalQuantity += $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                <span class="show-cart_count">{{ $totalQuantity }}</span>
+                                <span class="header-tooltip">Tu Carrito</span>
+                            </div>
+
+                            <!-- nav-button-wrap responsive-->
+                            <div class="nav-button-wrap">
+                                <div class="nav-button">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <!--  navigation  de navs-->
+                            <div class="nav-holder main-menu">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/public" class="act-link">Inicio</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Pedidos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('products')}}">Productos</a>
+                                        </li>
+                                        <li><a href="/contact">Contactos</a></li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- container 2 -->
+                            <!-- header-cart_wrap modal -->
+                            <div class="header-cart_wrap novis_cart">
+                                @php
+                                    $totalQuantity = 0;
+                                @endphp
+
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $totalQuantity += $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                <div class="header-cart_title">Tu carrito <span>Numero items <b style="color: #C19D60">{{ $totalQuantity }}</b></span></div>
+                                <div class="header-cart_wrap_container fl-wrap">
+                                    <div class="box-widget-content">
+                                        <div class="widget-posts fl-wrap">
+                                            @if(session('cart'))
+                                                @foreach(session('cart') as $id => $details)
+                                                    <ul>
+                                                        <li class="clearfix">
+                                                            <a href="#"  class="widget-posts-img"><img src="/public{{Storage::url($details['imagen'])}}" class="respimg" alt=""></a>
+                                                            <div class="widget-posts-descr">
+                                                                <a href="#" title="">{{ $details['name'] }}</a>
+                                                                <div class="widget-posts-descr_calc clearfix">CNT/PRD: {{ $details['quantity'] }} <span>X</span> $ {{ number_format(intval($details['pay']))  }}</div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(session('cart'))
+                                    @php $total = 0 @endphp
+                                    @foreach(session('cart') as $id => $details)
+                                        @php
+                                            $total += $details['pay'] * $details['quantity'];
+                                        @endphp
+                                    @endforeach
+                                @endif
+                                @if(session('cart') && count(session('cart')) > 0)
+                                    <div class="header-cart_wrap_total fl-wrap">
+                                        <div class="header-cart_wrap_total_item">Total: $ {{number_format(intval($total))}} <span></span></div>
+                                    </div>
+                                    <div class="header-cart_wrap_footer fl-wrap">
+                                        <a href="{{route('cart')}}"> Ver Carro</a>
+                                        <a href="#">Pagar Ahora</a>
+                                    </div>
+
+                                @else
+                                    <div class="header-cart_title" style="display: flex; justify-content: center; align-items: center;">Tu carrito esta vacío</div>
+                                    <a href="{{ route('products') }}" class="btn btn-primary btn-block">Registra un producto en el carrito</a>
+                                @endif
+
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
             @else
 
@@ -216,7 +471,7 @@
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>
                                     </li>
-                                    <li><a href="#">Contactos</a></li>
+                                    <li><a href="/contact">Contactos</a></li>
 
                                 </ul>
                             </nav>
