@@ -101,7 +101,7 @@
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>
                                     </li>
-                                    <li><a href="/contact">Contactos</a></li>
+                                    <li><a href="/public/contact">Contactos</a></li>
 
                                 </ul>
                             </nav>
@@ -228,7 +228,7 @@
                                         <li>
                                             <a href="{{route('products')}}">Productos</a>
                                         </li>
-                                        <li><a href="/contact">Contactos</a></li>
+                                        <li><a href="/public/contact">Contactos</a></li>
 
                                     </ul>
                                 </nav>
@@ -355,7 +355,7 @@
                                         <li>
                                             <a href="{{route('products')}}">Productos</a>
                                         </li>
-                                        <li><a href="/contact">Contactos</a></li>
+                                        <li><a href="/public/contact">Contactos</a></li>
 
                                     </ul>
                                 </nav>
@@ -471,7 +471,7 @@
                                     <li>
                                         <a href="{{route('products')}}">Productos</a>
                                     </li>
-                                    <li><a href="/contact">Contactos</a></li>
+                                    <li><a href="/public/contact">Contactos</a></li>
 
                                 </ul>
                             </nav>
