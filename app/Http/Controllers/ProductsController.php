@@ -56,7 +56,7 @@ class ProductsController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["comment"] = $request->comment;
             session()->put('cart', $cart);
-            session()->flash('success', 'Comment successfully updated!');
+            session()->flash('edit', 'El comentario se edito con éxito!');
         }
     }
 
@@ -69,7 +69,7 @@ class ProductsController extends Controller
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Product successfully removed!');
+            session()->flash('success', 'El producto se elimino con éxito!!');
         }
     }
 
@@ -78,4 +78,7 @@ class ProductsController extends Controller
         session()->forget('cart');
         return redirect()->route('cart')->with('success', 'El carrito se ha borrado exitosamente.');
     }
+
+
+
 }
