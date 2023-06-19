@@ -202,9 +202,10 @@
 @endsection
 
 @section('js')
-<script>
+    <script>
     $(document).ready(function (e) {
         $('#imagen_producto').change(function(){
+            console.log("Cambio de imagen detectado"); // Agrega esta línea
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#imagenSeleccionada').attr('src', e.target.result);
@@ -212,6 +213,7 @@
             reader.readAsDataURL(this.files[0]);
         });
     });
+
     function show_impo(valor){
         document.getElementById("resul_ipoconsumo").innerHTML=valor + "%";
     }
