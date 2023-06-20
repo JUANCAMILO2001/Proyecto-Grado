@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title') - DeliPizza</title>
@@ -444,7 +444,8 @@
 
 
                         <div class="show-share-btn showshare htact ">
-                            <a href="{{route('login')}}"><i class="material-symbols-outlined" style="color: #666;padding-top: 24px;">
+                            <a href="{{route('login')}}">
+                                <i class="material-symbols-outlined" style="color: #666;padding-top: 24px;">
                                     person
                                 </i>
                                 <span class="header-tooltip">Iniciar Sesión</span></a>
@@ -530,7 +531,7 @@
                                             <li><span>Ubicados: </span><a href="#">Isla del sol</a></li>
                                         </ul>
                                     </div>
-                                    <a href="" class="footer-widget-content-link">Ponerse en Contacto</a>
+                                    <a href="/public/contact" class="footer-widget-content-link">Ponerse en Contacto</a>
                                 </div>
                             </div>
                         </div>

@@ -55,8 +55,9 @@
                 <div class="container">
                     <div class="hero-title">
 
-                        <h2>Bienvenidos a Delipizza ¡Aqui podras pedir A DOMICILIO o Recoger!
-                            - Contamos con RESERVACIONES</h2>
+                        <h2>
+                            Bienvenidos a Delipizza <br>¡Aqui podras pedir a DOMICILIO!
+                        </h2>
                         <a href="{{route('register')}}" class="hero_btn">Registrate <i class="fal fa-long-arrow-right"></i></a>
                     </div>
                 </div>
@@ -109,7 +110,7 @@
                                 nace una gran parte de la historia de este barrio, siendo nosotros uno de los primeros
                                 inquilinos de este amada urbanizacion.
                             </p>
-                            <a href="" class="btn fl-btn">Ver Menú<i class="fal fa-long-arrow-right"></i></a>
+                            <a href="{{route('products')}}" class="btn fl-btn">Ver Menú<i class="fal fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6">
