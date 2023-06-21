@@ -155,8 +155,6 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <button type="button" class="cart-totals_btn color-bg"><a href="#"  class="hero__ctas" style="color: #fff;">Pagar en Efectivo</a></button>
-                                <button type="submit" class="cart-totals_btn color-bg">Pagar el Spatie</button>
                                 <div id="wallet_container"></div>
                             </div>
                             <section class="modal ">
@@ -193,7 +191,6 @@
 @endsection
 @section('style')
     <style>
-
 
         .modal{
             position: fixed;
