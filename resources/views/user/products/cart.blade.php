@@ -34,6 +34,23 @@
         <!--  section  -->
         <section class="hidden-section">
             <div class="container">
+                @php
+                    // SDK de Mercado Pago
+                    require base_path('/vendor/autoload.php');
+                    // Agrega credenciales
+                    MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+                    // Crea un objeto de preferencia
+                    $preference = new MercadoPago\Preference();
+
+                    // Crea un ítem en la preferencia
+                    $item = new MercadoPago\Item();
+                    $item->title = 'Mi producto';
+                    $item->quantity = 1;
+                    $item->unit_price = 75;
+                    $preference->items = array($item);
+                    $preference->save();
+                @endphp
                 <!-- CHECKOUT TABLE -->
                 <div class="row">
                     <div class="col-md-8">
@@ -140,6 +157,7 @@
                                 </table>
                                 <button type="button" class="cart-totals_btn color-bg"><a href="#"  class="hero__ctas" style="color: #fff;">Pagar en Efectivo</a></button>
                                 <button type="submit" class="cart-totals_btn color-bg">Pagar el Spatie</button>
+                                <div id="wallet_container"></div>
                             </div>
                             <section class="modal ">
                                 <div class="modal__container">
@@ -374,6 +392,23 @@
     </style>
 @endsection
 @section('js')
+    // SDK MercadoPago.js
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+        //Agrega credenciales de SDK
+        const mp = new MercadoPago("{{config('services.mercadopago.key')}}");
+        const bricksBuilder = mp.bricks();
+
+        //Inicializa el checkout
+        mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: "{{$preference->id}}",
+                redirectMode: "modal"
+            },
+        });
+
+
+    </script>
     <script>
         $(document).ready(function(){
             $('.alert.success').addClass("show");
