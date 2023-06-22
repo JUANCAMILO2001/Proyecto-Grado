@@ -39,6 +39,7 @@ class User extends Authenticatable
         'external_id',
         'external_auth',
         'state_id',
+        'address',
     ];
 
     /**

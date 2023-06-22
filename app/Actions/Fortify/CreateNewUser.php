@@ -29,6 +29,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => ['required'],
             'phone' => ['required', 'string', 'max:255'],
             'document_type' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
             'state_id' => '1',
         ])->validate();
 
@@ -39,6 +40,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'phone' => $input['phone'],
+            'address' => $input['address'],
             'document_type' => $input['document_type'],
             'state_id' => '1',
         ])->assignRole('usuario');

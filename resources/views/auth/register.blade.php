@@ -48,6 +48,11 @@
                         </div>
                     </div>
 
+                    <!--input Number Addresss-->
+                    <div class="form-floating mb-3 btn-1">
+                        <input type="text"  name="address" id="address" placeholder="Direccion de recidencia *"  required/>
+                    </div>
+
                     <!--input Number Telefono-->
                     <div class="form-floating mb-3 btn-1">
                         <input type="text"  name="phone" id="phone" placeholder="Numero Celular *"  required/>

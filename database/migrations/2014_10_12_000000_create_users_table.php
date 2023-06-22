@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('document_type')->nullable();
+            $table->string('address')->nullable();
 
             $table->bigInteger('state_id')->unsigned();
 

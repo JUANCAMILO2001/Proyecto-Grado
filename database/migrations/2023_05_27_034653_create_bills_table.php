@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('subtotal');
             $table->string('total');
             $table->string('method_pay');
-            $table->string('address');
 
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('state_id')->unsigned();
