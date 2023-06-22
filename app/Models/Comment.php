@@ -13,12 +13,14 @@ class Comment extends Model
     protected $table = 'comments';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'detail',
+        'pgr',
+        'bill_id',
     ];
 
-    /*relacion estados a usuarios inversa*/
-    public function orders()
+    /*relacion comentarios a facturas directa corregida*/
+    public function bill()
     {
-        return $this->hasMany('App\Models\Order', 'comment_id');
+        return $this->belongsTo('App\Models\Bills', 'bill_id');
     }
+
 }

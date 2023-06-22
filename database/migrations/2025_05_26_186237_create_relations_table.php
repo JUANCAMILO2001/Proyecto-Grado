@@ -25,15 +25,9 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade');
         });
-        Schema::table('order_bills', function ($table) {
-            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade');
+        Schema::table('comments', function ($table) {
             $table->foreign('bill_id')->references('id')->on('bills')->onUpdate('cascade');
         });
-        Schema::table('orders', function ($table) {
-            $table->foreign('pay_id')->references('id')->on('pays')->onUpdate('cascade');
-            $table->foreign('comment_id')->references('id')->on('comments')->onUpdate('cascade');
-        });
-
     }
 
     /**

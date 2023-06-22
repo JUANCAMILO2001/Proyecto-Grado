@@ -19,13 +19,13 @@ class Product extends Model
             'state_id',
     ];
 
-    /*relacion productos a estados*/
+    /*relacion productos a estados corregida*/
     public function state()
     {
         return $this->belongsTo('App\Models\State', 'state_id');
     }
 
-    /* relacion muchos a muchos de productos a facturas*/
+    /* relacion muchos a muchos de productos a facturas corregida*/
     public function bills()
     {
         return $this->belongsToMany('App\Models\Bill', 'bill_products');

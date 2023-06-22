@@ -71,13 +71,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    /*relacion usuarios a estados directa*/
+    /*relacion usuarios a estados directa corregida*/
     public function state()
     {
         return $this->belongsTo('App\Models\State', 'state_id');
     }
 
-    /*relacion usuarios a facturas inversa*/
+    /*relacion usuarios a facturas inversa corregida*/
     public function bills()
     {
         return $this->hasMany('App\Models\Bill', 'user_id');

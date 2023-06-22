@@ -40,16 +40,28 @@
                     // Agrega credenciales
                     MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
 
-                    // Crea un objeto de preferencia
-                    $preference = new MercadoPago\Preference();
+                    // Calcular la cantidad total y el precio total del carrito
+                    $totalQuantity = 0;
+                    $total = 0;
+                    $items = []; // Array auxiliar para almacenar los ítems del carrito
 
-                    // Crea un ítem en la preferencia
-                    $item = new MercadoPago\Item();
-                    $item->title = 'Mi producto';
-                    $item->quantity = 1;
-                    $item->unit_price = 75;
-                    $preference->items = array($item);
-                    $preference->save();
+                    if(session('cart')) {
+                        foreach(session('cart') as $id => $details) {
+                            $totalQuantity += $details['quantity'];
+                            $total += $details['pay'] * $details['quantity'];
+
+                            // Agregar cada ítem del carrito al array auxiliar
+                            $item = new MercadoPago\Item();
+                            $item->title = $details['name'];
+                            $item->quantity = $details['quantity'];
+                            $item->unit_price = $details['pay'];
+                            $items[] = $item;
+                        }
+                    }
+
+                    $preference = new MercadoPago\Preference();
+                    $preference->items = $items; // Asignar el array auxiliar a la propiedad items
+                $preference->save();
                 @endphp
                 <!-- CHECKOUT TABLE -->
                 <div class="row">
@@ -90,7 +102,6 @@
                                             <td class="pr-remove">
                                                 <a><img src="/public{{Storage::url($details['imagen'])}}" class="respimg"></a>
                                             </td>
-
                                             <td class="pr-remove">
                                                 <h5 class="product-name">{{$details['name']}}</h5>
                                             </td>
@@ -107,7 +118,7 @@
                                                 <input type="number" name="quantity" id="quantity" value="{{ $details['quantity'] }}" min="1" class="order-count cart_update">
                                             </td>
                                             <td class="pr-remove">
-                                                <input type="hidden" value="1" id="id" name="id">
+                                                <input type="hidden" value="{{ $id }}" id="id" name="id">
                                                 <button class="cart_remove" title="Eliminar"><i class="material-symbols-outlined">close</i></button>
                                             </td>
                                             <td class="pr-remove"> <!-- Added the 'Editar' button -->
@@ -115,6 +126,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -395,19 +407,14 @@
     // SDK MercadoPago.js
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-        //Agrega credenciales de SDK
         const mp = new MercadoPago("{{config('services.mercadopago.key')}}");
         const bricksBuilder = mp.bricks();
-
-        //Inicializa el checkout
         mp.bricks().create("wallet", "wallet_container", {
             initialization: {
                 preferenceId: "{{$preference->id}}",
                 redirectMode: "modal"
             },
         });
-
-
     </script>
     <script>
         $(document).ready(function(){

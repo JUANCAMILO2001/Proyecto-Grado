@@ -35,10 +35,21 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
 
+        //creacion de estados
         State::create([
             'name' => 'Disponible',
         ]);
+        State::create([
+            'name' => 'No Disponible',
+        ]);
+        State::create([
+            'name' => 'Entregado',
+        ]);
+        State::create([
+            'name' => 'Pendiente',
+        ]);
 
+        //creacion usuarios prueba
         User::create([
             'names' => 'Camilo',
             'lastnames' => 'Ramirez',
@@ -49,7 +60,6 @@ class DatabaseSeeder extends Seeder
             'document_type' => '111',
             'state_id' => '1',
         ])->assignRole('admin');
-
         User::create([
             'names' => 'Esteban',
             'lastnames' => 'Escarraga',
@@ -60,7 +70,6 @@ class DatabaseSeeder extends Seeder
             'document_type' => '111',
             'state_id' => '1',
         ])->assignRole('admin');
-
         User::create([
             'names' => 'Cocinero',
             'lastnames' => 'Delipizza',
@@ -71,7 +80,6 @@ class DatabaseSeeder extends Seeder
             'document_type' => '111',
             'state_id' => '1',
         ])->assignRole('cocinero');
-        
         User::create([
             'names' => 'Usuario',
             'lastnames' => 'prueba',
@@ -83,6 +91,8 @@ class DatabaseSeeder extends Seeder
             'state_id' => '1',
         ])->assignRole('usuario');
 
+
+        //creacion de producto de prueba
         Product::create([
             'imagen' => 'perrocaliente.png',
             'name' => 'Perro Caliente',
@@ -91,38 +101,7 @@ class DatabaseSeeder extends Seeder
             'state_id' => '1',
         ]);
 
-        Bills::create([
-            'state_pay' => 'pendiente',
-            'user_id' => '1',
-            'state_id' => '1',
-        ]);
-
-
-        Pay::create([
-            'pay_method' =>'Efectivo',
-            'pay_total' =>'20000',
-        ]);
-
-        Comment::create([
-            'detail' => 'sin cebolla y con doble huvo de codorniss',
-        ]);
-        $fecha = Carbon::create(2023, 5, 26);
-        Orders::create([
-            'fecha' => $fecha,
-            'description' => 'ass sss',
-            'pay_id' => '1',
-            'comment_id' => '1',
-        ]);
-
-        OrderBills::create([
-            'order_id' => '1',
-            'bill_id' => '1',
-        ]);
-
-        BillProducts::create([
-            'product_id' => '1',
-            'bill_id' => '1',
-        ]);
+        
 
     }
 }
