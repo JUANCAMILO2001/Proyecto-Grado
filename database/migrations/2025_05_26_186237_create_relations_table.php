@@ -19,7 +19,7 @@ return new class extends Migration
         });
         Schema::table('bill_products', function ($table) {
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
-            $table->foreign('bill_id')->references('id')->on('bills')->onUpdate('cascade');
+            $table->foreign('bills_id')->references('id')->on('bills')->onUpdate('cascade');
         });
         Schema::table('bills', function ($table) {
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');

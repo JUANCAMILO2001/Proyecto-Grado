@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\GoogleAuthController;
 use App\Http\Controllers\Admin\RedirectController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\BillsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::middleware([
     Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
 
     Route::delete('/cart/clear', [ProductsController::class, 'clear'])->name('clear_cart');
+
+    Route::post('pagar', [BillsController::class, 'checkCart'])->name('pagar');
+    Route::get('/chechekspays/{id}', [BillsController::class, 'checkCartuser'])->name('users.checkpays');
 });
 
 Route::get('/login-google', [GoogleAuthController::class, 'redirectToGoogle']);

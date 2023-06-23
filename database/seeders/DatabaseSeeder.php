@@ -38,15 +38,19 @@ class DatabaseSeeder extends Seeder
         //creacion de estados
         State::create([
             'name' => 'Disponible',
+            'color' => '#289625',
         ]);
         State::create([
             'name' => 'No Disponible',
+            'color' => '#BE162D',
         ]);
         State::create([
             'name' => 'Entregado',
+            'color' => '#0CC620',
         ]);
         State::create([
             'name' => 'Pendiente',
+            'color' => '#4C514C',
         ]);
 
         //creacion usuarios prueba
@@ -59,6 +63,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '12233',
             'document_type' => '111',
             'state_id' => '1',
+            'address' => 'Calle falsa 123',
         ])->assignRole('admin');
         User::create([
             'names' => 'Esteban',
@@ -69,6 +74,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '12233',
             'document_type' => '111',
             'state_id' => '1',
+            'address' => 'Calle falsa 123',
         ])->assignRole('admin');
         User::create([
             'names' => 'Cocinero',
@@ -79,6 +85,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '12233',
             'document_type' => '111',
             'state_id' => '1',
+            'address' => 'Calle falsa 123',
         ])->assignRole('cocinero');
         User::create([
             'names' => 'Usuario',
@@ -89,6 +96,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '12233',
             'document_type' => '111',
             'state_id' => '1',
+            'address' => 'Calle falsa 123',
         ])->assignRole('usuario');
 
 
@@ -101,7 +109,7 @@ class DatabaseSeeder extends Seeder
             'state_id' => '1',
         ]);
 
-        
+
 
     }
 }

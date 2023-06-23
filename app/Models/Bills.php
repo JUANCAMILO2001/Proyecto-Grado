@@ -12,12 +12,12 @@ class Bills extends Model
     protected $table = 'bills';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'description',
-        'quantity',
-        'subtotal',
         'method_pay',
         'user_id',
         'state_id',
+        'pay_cacelar',
+        'address_bill',
+        'checkout_img',
     ];
 
     /*relacion factura a usuario directa correccion*/
@@ -35,7 +35,8 @@ class Bills extends Model
     /* relacion muchos a muchos de facturas a productos */
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product', 'bill_products');
+        return $this->belongsToMany('App\Models\Product', 'bill_products')
+                    ->withPivot('quantity', 'description', 'subtotal', 'total', 'name');
     }
     /*relacion factura a comentario inversa corregida*/
     public function comments()

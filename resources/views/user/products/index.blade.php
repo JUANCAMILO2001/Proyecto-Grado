@@ -76,7 +76,7 @@
                                                     <div class="center-quantity">
                                                         <div class="number-input">
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                                                            <input required class="quantity" min="0" name="quantity" value="0" type="number">
+                                                            <input required class="quantity" min="0" name="quantity" placeholder="0" type="number">
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                                                         </div>
                                                     </div>
@@ -102,12 +102,36 @@
                                         <h6>{{$product->name}}</h6>
                                         <div class="hmi-dec" style="left: 162px;"></div>
                                         <span class="hero-menu-item-price">$ {{number_format(intval($product->pay))}}</span>
+                                        <div class="add_cart" title="Añadir al carrito">
+                                            <a href="#" class="hero__cta" data-toggle="modal" data-target="#modal_{{ $loop->iteration }}">Añadir</a>
+                                        </div>
                                     </div>
                                     <div class="hero-menu-item-details">
                                         <p>{{$product->description}}</p>
                                     </div>
+
                                 </div>
                                 <!-- hero-menu-item end-->
+                                <!-- Modal -->
+                                <section class="modal" id="modal_{{ $loop->iteration }}">
+                                    <div class="modal__container">
+                                        <div class="close-modal-special">
+                                            <span class="btn-close-modal">x</span>
+                                        </div>
+                                        <img class="modal__img" src="/public{{ Storage::url($product->imagen) }}" alt="">
+                                        <div class="gird-modal-content">
+                                            <div class="text-modal">
+                                                <p class="title-modal">{{ $product->name }}</p>
+                                                <p>{{ $product->description }}</p>
+                                                <p class="precio-modal">$ {{ number_format(intval($product->pay)) }}</p>
+                                            </div>
+                                            <div class="btn-modal">
+                                                <a href="{{route('login')}}" class="modal__agregar">Iniciar Sesión</a>
+                                                <a class="modal__close">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                             @endforeach
                         @endif
                     </div>
@@ -312,10 +336,10 @@
 
         .modal__agregar{
             text-decoration: none;
-            color: #C19D60;
+            color: #fff;
             font-weight: bold;
-            background-color: #fff;
-            padding: 1em 3em;
+            background-color: #C19D60;
+            padding: 1em 2em;
             border: 1px solid #C19D60;
             border-radius: 6px;
             display: inline-block;
@@ -325,9 +349,10 @@
         }
 
         .modal__agregar:hover{
-            color: #fff;
+            color: #C19D60;
             font-weight: bold;
-            background-color: #C19D60;
+            background-color: #fff;
+            border-color: 1px solid #C19D60;
         }
 
 
@@ -335,6 +360,13 @@
             position: absolute;
             margin-right: 100px;
             margin-top: -337px;
+            margin-left: 703px;
+        }
+
+        .close-modal-special{
+            position: absolute;
+            margin-right: 100px;
+            margin-top: -240px;
             margin-left: 703px;
         }
         .btn-close-modal{
@@ -379,6 +411,7 @@
             border-top-color: transparent;
             border-left-color: transparent;
             border-right-color: transparent;
+            background-color: #d9d9d6;
         }
         .coment-modal textarea:focus{
             border-color: #5b5b5b;
@@ -447,7 +480,7 @@
 
         .number-input input[type=number] {
             font-family: sans-serif;
-            max-width: 2rem;
+            max-width: 3rem;
             padding: .5rem;
             border: solid #5e646a;
             border-width: 0 2px;

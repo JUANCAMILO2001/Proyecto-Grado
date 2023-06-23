@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->string('quantity');
-            $table->string('subtotal');
-            $table->string('total');
-            $table->string('method_pay');
+            $table->string('method_pay')->nullable();
+            $table->string('pay_cacelar')->nullable();
+            $table->string('address_bill')->nullable();
+            $table->string('checkout_img')->nullable();
 
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('state_id')->unsigned();

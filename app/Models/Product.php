@@ -28,6 +28,6 @@ class Product extends Model
     /* relacion muchos a muchos de productos a facturas corregida*/
     public function bills()
     {
-        return $this->belongsToMany('App\Models\Bill', 'bill_products');
+        return $this->belongsToMany('App\Models\Bills', 'bill_products');
     }
 }

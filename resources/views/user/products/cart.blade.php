@@ -167,22 +167,108 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <button type="button" class="cart-totals_btn color-bg"><a href="#"  class="hero__ctas" style="color: #fff;">Pagar en Efectivo</a></button>
-                                <button type="submit" class="cart-totals_btn color-bg">Pagar el Spatie</button>
+                                <button type="button" class="cart-totals_btn color-bg">
+                                    <a href="#"  class="hero__ctas_pagocontra" style="color: #fff;">Pago Contra Entrega</a>
+                                </button>
                                 <div id="wallet_container"></div>
+                                <div style="">
+                                    <a href="asdasd" class="hero__ctas_daviplata" title="Daviplata">
+                                        <button type="button" style="background-image: url('{{url('images/daviplata.png')}}'); background-size: cover; background-repeat: no-repeat; width: 15px; height: 39px; border-radius: 50%">
+                                        </button>
+                                    </a>
+                                    <a href="" title="Nequi" class="hero__ctas_nequi" style="margin-right: 8px">
+                                        <button type="button" style="background-image: url('{{url('images/nequi.png')}}'); background-size: cover; background-repeat: no-repeat; width: 15px; height: 39px; border-radius: 50%; margin-right: 10px">
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                            <section class="modal ">
-                                <div class="modal__container">
-                                    <img src="{{url('images/scooter-de-entrega.gif')}}" class="modal__img">
-                                    <div class="grid-modal">
-                                        <p class="modal__title">¡Estas a un paso de finalizar tu compra!</p>
-                                        <p class="modal__title">Total de la compra: $ {{number_format(intval($total))}} COP</p>
-                                        <label for="">Dirección de recidencia</label>
-                                        <input type="text" >
-                                        <br>
-                                        <label for="">Con cuanto cancelas</label>
-                                        <input type="text">
-                                        <a href="#" class="modal__close">Cerrar Modal</a>
+                            <!--Modal pedio contra entrega-->
+                            <section class="modal_pagocontra">
+                                <div class="modal__container_pagocontra">
+                                    <img src="{{url('images/scooter-de-entrega.gif')}}" class="modal__img_pagocontra">
+                                    <div class="grid-modal_pagocontra">
+                                        <p class="modal__title-special">¡Estas a un paso de finalizar tu compra!</p>
+                                        <p class="modal__title-total">Total de la compra: $ {{number_format(intval($total))}} COP</p>
+
+                                        <form class="custom-form-lg" action="{{route('pagar')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="method_pay" value="Efectivo">
+                                            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
+                                            <label for="">Dirección de recidencia</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input type="text"  name="address_bill"  placeholder="Dirección de recidencia" value="{{auth()->user()->address}}">
+                                            </div>
+                                            <br>
+                                            <label for="">Con cuanto cancelas</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input type="text"  name="pay_cacelar"  placeholder="Con cuanto cancelas">
+                                            </div>
+                                            <br>
+                                            <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
+                                            <a href="#" class="modal__close_pagocontra">Cerrar Modal</a>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!--Modal daviplata-->
+                            <section class="modal_daviplata">
+                                <div class="modal__container_daviplata">
+                                    <img src="{{url('images/qr_daviplata.jpg')}}" class="modal__img_daviplata">
+                                    <div class="grid-modal_daviplata">
+                                        <p class="modal__title-daviplata">¡daviplata Estas a un paso de finalizar tu compra!</p>
+                                        <p class="modal__title-daviplata">Total de la compra: $ {{number_format(intval($total))}} COP</p>
+
+                                        <form class="custom-form-lg" action="{{route('pagar')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="method_pay" value="Daviplata">
+                                            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
+                                            <label for="">Dirección de recidencia</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input type="text"  name="address_bill"  placeholder="Dirección de recidencia" value="{{auth()->user()->address}}">
+                                            </div>
+                                            <br>
+                                            <label for="">Con cuanto cancelas</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input type="text"  name="pay_cacelar"  placeholder="Con cuanto cancelas">
+                                            </div>
+                                            <br>
+                                            <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
+                                            <a href="#" class="modal__close_daviplata">Cerrar Modal</a>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </section>
+                            <!--Modal nequi-->
+                            <section class="modal_nequi">
+                                <div class="modal__container_nequi">
+                                    <img src="{{url('images/qr_nequi.png')}}" class="modal__img_nequi">
+                                    <div class="grid-modal_nequi">
+                                        <p class="modal__title-nequi">Nequi¡Estas a un paso de finalizar tu compra!</p>
+                                        <p class="modal__title-nequi">Total de la compra: $ {{number_format(intval($total))}} COP</p>
+
+                                        <form  enctype="multipart/form-data" class="custom-form-lg" action="{{route('pagar')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="method_pay" value="Nequi">
+                                            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
+                                            <label for="">Dirección de recidencia</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input type="text"  name="address_bill"  placeholder="Dirección de recidencia" value="{{auth()->user()->address}}">
+                                            </div>
+                                            <label for="">Comprobante de pago</label> <br>
+                                            <div class="form-floating mb-3 btn-1">
+                                                <input required type="file"  name="checkout_img" >
+                                            </div>
+                                            <br>
+                                            <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
+                                            <a href="#" class="modal__close_nequi">Cerrar Modal</a>
+                                        </form>
+
                                     </div>
                                 </div>
                             </section>
@@ -207,7 +293,9 @@
     <style>
 
 
-        .modal{
+
+        .modal_pagocontra{
+            text-align: left!important;
             position: fixed;
             top: 0;
             left: 0;
@@ -222,7 +310,7 @@
             --transition: transform .8s;
         }
 
-        .modal--show{
+        .modal--show_pagocontra{
             opacity: 1;
             pointer-events: unset;
             transition: opacity .6s;
@@ -231,14 +319,16 @@
             z-index: 22;
         }
 
-        .modal__container{
+        .modal__container_pagocontra{
+            text-align: left!important;
+
             margin: auto;
             width: 90%;
             max-width: 600px;
             max-height: 90%;
             background-color: #fff;
             border-radius: 6px;
-            padding: 3em 2.5em;
+            padding: 4em 2.5em;
             display: flex;
             gap: 1em;
             place-items: center;
@@ -246,26 +336,35 @@
             transform: var(--transform);
             transition:var(--transition);
         }
-        .grid-modal{
+        .grid-modal_pagocontra{
             display: grid;
+            overflow-y: scroll;
+            max-height: 150px;
 
         }
 
-        .modal__title{
+        .modal__title_pagocontra{
             font-size: 2.5rem;
         }
 
-        .modal__paragraph{
+        .modal__title-special{
+            font-size: 33px!important;
+        }
+        .modal__title-total{
+            font-size: 17px!important;
+        }
+
+        .modal__paragraph_pagocontra{
             margin-bottom: 10px;
         }
 
-        .modal__img{
+        .modal__img_pagocontra{
             width: 190px;
             height: 190px;
             max-width: 300px;
         }
 
-        .modal__close{
+        .modal__close_pagocontra{
             text-decoration: none;
             color: #fff;
             background-color: #F26250;
@@ -277,20 +376,218 @@
             transition: background-color .3s;
         }
 
-        .modal__close:hover{
+        .modal__close_pagocontra:hover{
             color: #F26250;
             background-color: #fff;
         }
 
         @media (max-width:800px) {
-            .modal__container{
+            .modal__container_pagocontra{
                 padding: 2em 1.5em;
             }
 
-            .modal__title{
+            .modal__title_pagocontra{
                 font-size: 1.5rem;
             }
         }
+
+
+        /*daviplata*/
+        .modal_daviplata{
+            text-align: left!important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #111111bd;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .6s .9s;
+            --transform: translateY(-100vh);
+            --transition: transform .8s;
+        }
+
+        .modal--show_daviplata{
+            opacity: 1;
+            pointer-events: unset;
+            transition: opacity .6s;
+            --transform: translateY(0);
+            --transition: transform .8s .8s;
+            z-index: 22;
+        }
+
+        .modal__container_daviplata{
+            text-align: left!important;
+
+            margin: auto;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90%;
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 4em 2.5em;
+            display: flex;
+            gap: 1em;
+            place-items: center;
+            grid-auto-columns: 100%;
+            transform: var(--transform);
+            transition:var(--transition);
+        }
+        .grid-modal_daviplata{
+            display: grid;
+            overflow-y: scroll;
+            max-height: 150px;
+
+        }
+
+        .modal__title_daviplata{
+            font-size: 2.5rem;
+        }
+
+        .modal__title-daviplata{
+            font-size: 33px!important;
+        }
+        .modal__title-daviplata{
+            font-size: 17px!important;
+        }
+
+        .modal__paragraph_daviplata{
+            margin-bottom: 10px;
+        }
+
+        .modal__img_daviplata{
+            width: 190px;
+            height: 190px;
+            max-width: 300px;
+        }
+
+        .modal__close_daviplata{
+            text-decoration: none;
+            color: #fff;
+            background-color: #F26250;
+            padding: 1em 3em;
+            border: 1px solid ;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 300;
+            transition: background-color .3s;
+        }
+
+        .modal__close_daviplata:hover{
+            color: #F26250;
+            background-color: #fff;
+        }
+
+        @media (max-width:800px) {
+            .modal__container_daviplata{
+                padding: 2em 1.5em;
+            }
+
+            .modal__title_daviplata{
+                font-size: 1.5rem;
+            }
+        }
+
+        /*Nequi*/
+        .modal_nequi{
+            text-align: left!important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #111111bd;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .6s .9s;
+            --transform: translateY(-100vh);
+            --transition: transform .8s;
+        }
+
+        .modal--show_nequi{
+            opacity: 1;
+            pointer-events: unset;
+            transition: opacity .6s;
+            --transform: translateY(0);
+            --transition: transform .8s .8s;
+            z-index: 22;
+        }
+
+        .modal__container_nequi{
+            text-align: left!important;
+
+            margin: auto;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90%;
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 4em 2.5em;
+            display: flex;
+            gap: 1em;
+            place-items: center;
+            grid-auto-columns: 100%;
+            transform: var(--transform);
+            transition:var(--transition);
+        }
+        .grid-modal_nequi{
+            display: grid;
+            overflow-y: scroll;
+            max-height: 150px;
+
+        }
+
+        .modal__title_nequi{
+            font-size: 2.5rem;
+        }
+
+        .modal__title-nequi{
+            font-size: 33px!important;
+        }
+        .modal__title-nequi{
+            font-size: 17px!important;
+        }
+
+        .modal__paragraph_nequi{
+            margin-bottom: 10px;
+        }
+
+        .modal__img_nequi{
+            width: 190px;
+            height: 190px;
+            max-width: 300px;
+        }
+
+        .modal__close_nequi{
+            text-decoration: none;
+            color: #fff;
+            background-color: #F26250;
+            padding: 1em 3em;
+            border: 1px solid ;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 300;
+            transition: background-color .3s;
+        }
+
+        .modal__close_nequi:hover{
+            color: #F26250;
+            background-color: #fff;
+        }
+
+        @media (max-width:800px) {
+            .modal__container_nequi{
+                padding: 2em 1.5em;
+            }
+
+            .modal__title_nequi{
+                font-size: 1.5rem;
+            }
+        }
+
     </style>
     <style>
         .alert {
@@ -400,7 +697,6 @@
             left: 20px;
             color: #f44336;
         }
-
     </style>
 @endsection
 @section('js')
@@ -432,19 +728,51 @@
         });
     </script>
     <script type="text/javascript">
-        const openModal = document.querySelector('.hero__ctas');
-        const modal = document.querySelector('.modal');
-        const closeModal = document.querySelector('.modal__close');
+        const openModal = document.querySelector('.hero__ctas_pagocontra');
+        const modal = document.querySelector('.modal_pagocontra');
+        const closeModal = document.querySelector('.modal__close_pagocontra');
 
         openModal.addEventListener('click', (e)=>{
             e.preventDefault();
-            modal.classList.add('modal--show');
+            modal.classList.add('modal--show_pagocontra');
         });
 
         closeModal.addEventListener('click', (e)=>{
             e.preventDefault();
-            modal.classList.remove('modal--show');
+            modal.classList.remove('modal--show_pagocontra');
         });
+
+
+        //daviplata
+        const openModaldaviplata = document.querySelector('.hero__ctas_daviplata');
+        const modaldaviplata = document.querySelector('.modal_daviplata');
+        const closeModaldaviplata = document.querySelector('.modal__close_daviplata');
+
+        openModaldaviplata.addEventListener('click', (e)=>{
+            e.preventDefault();
+            modaldaviplata.classList.add('modal--show_daviplata');
+        });
+
+        closeModaldaviplata.addEventListener('click', (e)=>{
+            e.preventDefault();
+            modaldaviplata.classList.remove('modal--show_daviplata');
+        });
+
+        //nequi
+        const openModalnequi = document.querySelector('.hero__ctas_nequi');
+        const modalnequi = document.querySelector('.modal_nequi');
+        const closeModalnequi = document.querySelector('.modal__close_nequi');
+
+        openModalnequi.addEventListener('click', (e)=>{
+            e.preventDefault();
+            modalnequi.classList.add('modal--show_nequi');
+        });
+
+        closeModalnequi.addEventListener('click', (e)=>{
+            e.preventDefault();
+            modalnequi.classList.remove('modal--show_nequi');
+        });
+
 
         $(".cart_update").change(function (e) {
             e.preventDefault();

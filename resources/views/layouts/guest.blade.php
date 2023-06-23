@@ -154,8 +154,7 @@
                                     <div class="header-cart_wrap_total_item">Total: $ {{number_format(intval($total))}} <span></span></div>
                                 </div>
                                 <div class="header-cart_wrap_footer fl-wrap">
-                                    <a href="{{route('cart')}}"> Ver Carro</a>
-                                    <a href="#">Pagar Ahora</a>
+                                    <a href="{{route('cart')}}"> Pagar ahora</a>
                                 </div>
 
                             @else

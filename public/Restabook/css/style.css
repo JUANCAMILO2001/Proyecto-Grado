@@ -581,7 +581,7 @@ blockquote p {
     padding-top:15px;
 }
 .header-cart_wrap_footer:before {
-    content: "";
+
     display: block;
     width: 1px;
     height: 16.8px;
@@ -1408,12 +1408,15 @@ section.hidden-section {
 section.parallax-section {
     padding: 120px 0;
 }
+.cart-totals button{
+    margin-top: 6px!important;
+}
 .big-padding {
     padding: 140px 0;
 }
 section.parallax-section.hero-section {
     padding:210px 0 120px;
-    z-index:21;
+    z-index:0;
 }
 section.parallax-section.hero-section .overlay {
     opacity:0.5;
@@ -2306,8 +2309,8 @@ section.parallax-section.hero-section .section-title h2 {
     border:1px solid #eee;
     padding:5px 10px;
     cursor:pointer;
-    opacity:0;
-    visibility:hidden;
+    opacity:1;
+    visibility:visible;
     transition: all .2s ease-in-out;
 }
 .add_cart:hover {
