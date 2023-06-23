@@ -294,8 +294,11 @@
 
 
 
-        .modal_pagocontra{
-            text-align: left!important;
+
+        .modal_pagocontra {
+            text-align: left !important;
+        }
+        .modal{
             position: fixed;
             top: 0;
             left: 0;
