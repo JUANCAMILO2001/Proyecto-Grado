@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('bill_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('quantity');
-            $table->string('subtotal');
-            $table->string('total');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('subtotal')->nullable();
+            $table->string('total')->nullable();
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('bills_id')->unsigned();
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bills;
+use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BillsController extends Controller
 {
@@ -12,7 +15,9 @@ class BillsController extends Controller
      */
     public function index()
     {
-        //
+        $bills = Bills::all();
+        $states = State::all();
+        return view('admin.bills.index', compact('bills', 'states'));
     }
 
     /**
@@ -62,4 +67,22 @@ class BillsController extends Controller
     {
         //
     }
+
+    public function charts()
+    {
+        $salesByDay = DB::table('bills')
+            ->join('bill_products', 'bills.id', '=', 'bill_products.bills_id')
+            ->select(DB::raw('DATE(bills.created_at) AS date'), DB::raw('SUM(bill_products.total) AS total'))
+            ->groupBy('date')
+            ->get();
+
+        $balanceByMonth = DB::table('bills')
+            ->join('bill_products', 'bills.id', '=', 'bill_products.bills_id')
+            ->select(DB::raw('DATE_FORMAT(bills.created_at, "%Y-%m") AS month'), DB::raw('SUM(bill_products.total) AS balance'))
+            ->groupBy('month')
+            ->get();
+
+        return view('admin.bills.charts', compact('salesByDay', 'balanceByMonth'));
+    }
+
 }

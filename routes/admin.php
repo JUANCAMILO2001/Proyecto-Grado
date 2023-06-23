@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\BillsController;
 
 
 
@@ -14,4 +15,7 @@ Route::get('dashboard',[DashboardController::class, 'index'])->middleware('can:a
 Route::resource('users', UsersController::class)->names('admin.users');
 Route::resource('products', ProductsController::class)->names('admin.products');
 Route::resource('roles', RoleController::class)->names('admin.roles');
+Route::resource('bills', BillsController::class)->names('admin.bills');
+
+Route::get('charts',[BillsController::class, 'charts'])->name('admin.charts');
 
