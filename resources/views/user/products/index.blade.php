@@ -84,8 +84,8 @@
                                             </form>
 
                                             <div class="btn-modal">
-                                                <a class="modal__agregar" onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a>
                                                 <a class="modal__close">Cancelar</a>
+                                                <a class="modal__agregar" onclick="document.getElementById('add_cart_{{ $loop->iteration }}').submit()">Añadir</a>
                                             </div>
                                         </div>
                                     </div>
@@ -126,8 +126,8 @@
                                                 <p class="precio-modal">$ {{ number_format(intval($product->pay)) }}</p>
                                             </div>
                                             <div class="btn-modal">
-                                                <a href="{{route('login')}}" class="modal__agregar">Iniciar Sesión</a>
                                                 <a class="modal__close">Cancelar</a>
+                                                <a href="{{route('login')}}" class="modal__agregar">Iniciar Sesión</a>
                                             </div>
                                         </div>
                                     </div>
@@ -339,7 +339,7 @@
             color: #fff;
             font-weight: bold;
             background-color: #C19D60;
-            padding: 1em 2em;
+            padding: 1em 3em;
             border: 1px solid #C19D60;
             border-radius: 6px;
             display: inline-block;

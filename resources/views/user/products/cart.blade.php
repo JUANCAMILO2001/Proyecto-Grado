@@ -205,8 +205,8 @@
                                                 <input type="text"  name="pay_cacelar"  placeholder="Con cuanto cancelas">
                                             </div>
                                             <br>
+                                            <a href="#" class="modal__close_pagocontra">Cancelar</a>
                                             <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
-                                            <a href="#" class="modal__close_pagocontra">Cerrar Modal</a>
                                         </form>
 
                                     </div>
@@ -218,7 +218,7 @@
                                 <div class="modal__container_daviplata">
                                     <img src="{{url('images/qr_daviplata.jpg')}}" class="modal__img_daviplata">
                                     <div class="grid-modal_daviplata">
-                                        <p class="modal__title-daviplata">¡daviplata Estas a un paso de finalizar tu compra!</p>
+                                        <p class="modal__title-daviplata">¡Estas a un paso de finalizar tu compra!</p>
                                         <p class="modal__title-daviplata">Total de la compra: $ {{number_format(intval($total))}} COP</p>
 
                                         <form class="custom-form-lg" action="{{route('pagar')}}" method="post">
@@ -231,13 +231,13 @@
                                                 <input type="text"  name="address_bill"  placeholder="Dirección de recidencia" value="{{auth()->user()->address}}">
                                             </div>
                                             <br>
-                                            <label for="">Con cuanto cancelas</label> <br>
+                                            <label for="">Comprobante de pago</label> <br>
                                             <div class="form-floating mb-3 btn-1">
-                                                <input type="text"  name="pay_cacelar"  placeholder="Con cuanto cancelas">
+                                                <input required type="file"  name="checkout_img" >
                                             </div>
                                             <br>
+                                            <a href="#" class="modal__close_daviplata">Cancelar</a>
                                             <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
-                                            <a href="#" class="modal__close_daviplata">Cerrar Modal</a>
                                         </form>
 
                                     </div>
@@ -248,7 +248,7 @@
                                 <div class="modal__container_nequi">
                                     <img src="{{url('images/qr_nequi.png')}}" class="modal__img_nequi">
                                     <div class="grid-modal_nequi">
-                                        <p class="modal__title-nequi">Nequi¡Estas a un paso de finalizar tu compra!</p>
+                                        <p class="modal__title-nequi">¡Estas a un paso de finalizar tu compra!</p>
                                         <p class="modal__title-nequi">Total de la compra: $ {{number_format(intval($total))}} COP</p>
 
                                         <form  enctype="multipart/form-data" class="custom-form-lg" action="{{route('pagar')}}" method="post">
@@ -265,8 +265,8 @@
                                                 <input required type="file"  name="checkout_img" >
                                             </div>
                                             <br>
+                                            <a href="#" class="modal__close_nequi">Cancelar</a>
                                             <button type="submit" style="cursor: pointer; background-color: #c19d60; color: #fff; border: 1px solid #c19d60!important; height: 45px; width: 96px; border-radius: 6px">Pagar</button>
-                                            <a href="#" class="modal__close_nequi">Cerrar Modal</a>
                                         </form>
 
                                     </div>

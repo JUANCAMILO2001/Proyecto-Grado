@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bills;
+use App\Models\Product;
 use App\Models\State;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,9 +17,18 @@ class BillsController extends Controller
      */
     public function index()
     {
-        $bills = Bills::all();
-        $states = State::all();
-        return view('admin.bills.index', compact('bills', 'states'));
+        $bills = Bills::whereHas('state', function ($query) {
+            $query->where('id', 4);
+        })->get();
+        return view('admin.bills.index', compact('bills'));
+    }
+
+    public function entregadosa()
+    {
+        $bills = Bills::whereHas('state', function ($query) {
+            $query->where('id', 3);
+        })->get();
+        return view('admin.bills.entregadosa', compact('bills'));
     }
 
     /**
@@ -25,7 +36,11 @@ class BillsController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+        $bills = Bills::all();
+        $states = State::all();
+        return view('admin.bills.create', compact('bills', 'states', 'products', 'users'));
     }
 
     /**
@@ -33,21 +48,51 @@ class BillsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar si el campo 'products' existe y no es nulo
+        if ($request->has('products') && !is_null($request->input('products'))) {
+            $bill = Bills::create([
+                'method_pay' => $request->method_pay,
+                'pay_cacelar' => $request->pay_cacelar,
+                'address_bill' => $request->address_bill,
+                'checkout_img' => $request->checkout_img,
+                'user_id' => $request->user_id,
+                'state_id' => $request->state_id,
+            ]);
+
+            // Guardar las relaciones de muchos a muchos
+            $productData = [];
+            foreach ($request->input('products') as $productId => $productInfo) {
+                $productData[$productId] = [
+                    'name' => $productInfo['name'],
+                    'description' => $productInfo['description'],
+                    'quantity' => $productInfo['quantity'],
+                    'subtotal' => $productInfo['subtotal'],
+                    'total' => $productInfo['total'],
+                ];
+            }
+            $bill->products()->attach($productData);
+
+            return redirect()->route('admin.bills.index')->with('info', 'Pedido generado con éxito!');
+        } else {
+            return redirect()->back()->with('error', 'No se seleccionaron productos válidos.');
+        }
     }
+
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Bills $bill)
     {
-        //
+        Bills::all();
+        return view('admin.bills.show', compact('bill'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Bills $bill)
     {
         //
     }
@@ -55,7 +100,7 @@ class BillsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Bills $bill)
     {
         //
     }
@@ -82,7 +127,17 @@ class BillsController extends Controller
             ->groupBy('month')
             ->get();
 
-        return view('admin.bills.charts', compact('salesByDay', 'balanceByMonth'));
+        $entregadosCount = DB::table('bills')
+            ->where('state_id', 3)
+            ->count();
+
+        $pendientesCount = DB::table('bills')
+            ->where('state_id', 4)
+            ->count();
+
+
+
+        return view('admin.bills.charts', compact('salesByDay', 'balanceByMonth', 'entregadosCount', 'pendientesCount'));
     }
 
 }

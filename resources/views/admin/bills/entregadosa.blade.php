@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pedidos pendientes')
+@section('title', 'Pedidos Entregados')
 @section('content')
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
          navbar-scroll="true">
@@ -8,9 +8,9 @@
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Inicio</a>
                     </li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pedidos pendientes</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pedidos entregados</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">Pedidos pendientes</h6>
+                <h6 class="font-weight-bolder mb-0">Pedidos entregados</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
 
@@ -118,13 +118,11 @@
             </div>
         </div>
     </nav>
-
     <div class="container-fluid py-4">
         <div class="card">
-
             <div class="card-body table-responsive">
                 <a href="{{route('admin.bills.create')}}" class="text-decoration-none" title="Crear Pedido">+</a>
-                <a href="{{route('admin.entregadosa')}}" class="btn btn-secondary text-decoration-none" title="Pedidos Entregados" >Pedidos Entregados</a>
+                <a href="{{route('admin.bills.index')}}" class="btn btn-danger text-decoration-none" title="Pedidos Pendientes" >Pedidos Pendientes</a>
                 <table class="table table-hover text-nowrap">
                     <thead>
                     <tr>
@@ -190,6 +188,5 @@
             </div>
         </footer>
     </div>
-
 @endsection
 

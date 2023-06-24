@@ -14,7 +14,7 @@ class RedirectController extends Controller
         if (auth()->user()->hasRole('admin')){
             return redirect()->route('admin.dashboard');
         }elseif (auth()->user()->hasRole('cocinero')){
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.cocinero');
         }elseif (auth()->user()->hasRole('usuario')){
             return redirect('/');
         }else{

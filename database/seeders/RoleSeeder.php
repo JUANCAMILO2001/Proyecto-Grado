@@ -25,8 +25,14 @@ class   RoleSeeder extends Seeder
         //Permiso admin Dashboard
         Permission::create([
             'name' => 'admin.dashboard',
-            'description'=> 'Ver dashboard del Admin y cocinero'
-        ])->syncRoles([$role1, $role2]);
+            'description'=> 'Ver dashboard del Admin'
+        ])->syncRoles([$role1]);
+
+        //Permiso cocinero Dashboard
+        Permission::create([
+            'name' => 'admin.Cocinero',
+            'description'=> 'Ver dashboard cocinero'
+        ])->syncRoles([$role2]);
 
         //permiso para crear Productos
         Permission::create([
@@ -93,6 +99,38 @@ class   RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.roles.destroy',
             'description'=> 'Eliminar Estados'
+        ])->syncRoles([$role1]);
+
+        //Permisos admin Bills
+        Permission::create([
+            'name' => 'admin.bills.index',
+            'description'=> 'Lista de Pedidos pendientes'
+        ])->syncRoles([$role1, $role2]);
+        Permission::create([
+            'name' => 'admin.bills.entregadosa',
+            'description'=> 'Lista de Pedidos entregados'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.bills.create',
+            'description'=> 'Creación del Pedido'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.bills.edit',
+            'description'=> 'Edicion del Pedido'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.bills.show',
+            'description'=> 'Ver detalles del Pedido'
+        ])->syncRoles([$role1]);
+        Permission::create([
+            'name' => 'admin.bills.destroy',
+            'description'=> 'Eliminar Pedido'
+        ])->syncRoles([$role1]);
+
+        //permiso de informe
+        Permission::create([
+            'name' => 'admin.charts',
+            'description'=> 'Informe Ventas'
         ])->syncRoles([$role1]);
 
     }

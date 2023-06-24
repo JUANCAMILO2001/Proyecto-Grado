@@ -163,7 +163,7 @@
                                 <input type="text" oninput="formatearNumero()" name="pay" class="form-control form-control-border" id="precio_producto" name="precio_producto" placeholder="Precio de su Producto">
                             </div>
                             <div class="form-group">
-                                <label for="estado_id">Seleccionar el EStadp para su Producto:</label>
+                                <label for="estado_id">Seleccionar el Estado para su Producto:</label>
                                 <select onchange="mostrarValorSelect()" name="state_id" class="form-select custom-select form-control-border" name="company_id" id="company_id">
                                     <option value="" selected>--Seleccionar Estado--</option>
                                     @foreach($states as $state)

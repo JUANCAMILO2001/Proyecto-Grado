@@ -156,8 +156,6 @@
                                        class="me-2 btn btn-warning btn-company-danger">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a title="Detalles Usuario" href="{{route('admin.products.show',$product)}}"
-                                       class=" btn btn-success"><i class="fas fa-eye"></i></a>
                                 </div>
                             </td>
                         </tr>

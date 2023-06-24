@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pedidos pendientes')
+@section('title', 'Detalle del pedido')
 @section('content')
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
          navbar-scroll="true">
@@ -8,9 +8,9 @@
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{{route('admin.dashboard')}}">Inicio</a>
                     </li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pedidos pendientes</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Detalle del pedido</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">Pedidos pendientes</h6>
+                <h6 class="font-weight-bolder mb-0">Detalle del pedido {{$bill->id}}</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
 
@@ -121,49 +121,72 @@
 
     <div class="container-fluid py-4">
         <div class="card">
-
+            <div class="container">
+               <div class="d-flex justify-content-center mt-3">
+                   <h4><span class="badge" style="background: {{$bill->state->color}}">{{$bill->state->name}}</span></h4>
+               </div>
+                <div class="row ">
+                    <div class="col-6 mt-4">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="user_id">Usuario que solicita:</label>
+                                <input disabled readonly value="{{$bill->user->names}}" type="text" name="user_id" class="form-control form-control-border" id="user_id"  placeholder="Usuario que solicita">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="address_bill">Dirección de residencia:</label>
+                                <input value="{{$bill->address_bill}}" disabled readonly type="text" name="address_bill" class="form-control form-control-border" id="address_bill" placeholder="Dirección">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="method_pay">Metodo de pago:</label>
+                                <input disabled readonly value="{{$bill->method_pay}}" type="text" name="method_pay" class="form-control form-control-border" id="method_pay"  placeholder="Metodo de pago">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-4">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="user_id">Telefono:</label>
+                                <input disabled readonly value="{{$bill->user->phone}}" type="text" name="user_id" class="form-control form-control-border" id="user_id"  placeholder="Usuario que solicita">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="user_id">Con cuanto Cancela:</label>
+                                <input disabled readonly value="{{$bill->pay_cacelar}}" type="text" name="user_id" class="form-control form-control-border" id="user_id"  placeholder="Usuario que solicita">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-body table-responsive">
-                <a href="{{route('admin.bills.create')}}" class="text-decoration-none" title="Crear Pedido">+</a>
-                <a href="{{route('admin.entregadosa')}}" class="btn btn-secondary text-decoration-none" title="Pedidos Entregados" >Pedidos Entregados</a>
                 <table class="table table-hover text-nowrap">
                     <thead>
                     <tr>
-                        <th>Creación</th>
-                        <th>Usuario</th>
-                        <th>Pago</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Comentario</th>
+                        <th>Subtotal</th>
                     </tr>
                     </thead>
                     <tbody>
-
-                    @foreach($bills as $bill)
+                    @foreach($bill->products as $product)
                         <tr>
-                            <td>{{$bill->created_at->format('F d, Y - g:i a')}}</td>
-                            <td>{{$bill->user->names}} {{$bill->user->lastnames}}</td>
-                            <td>{{$bill->method_pay}}</td>
-                            <td>$ {{number_format(intval($bill->products->sum('pivot.total')))}}</td>
-                            <td>{{$bill->state->name}}</td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <form method="post" action="{{route('admin.bills.destroy', $bill)}}" id="eliminarfactura_{{ $loop->iteration }}">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-                                    <a title="Eliminar Factura" onclick="document.getElementById('eliminarfactura_{{ $loop->iteration }}').submit()" class=" me-2 btn btn-danger btn-company-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                    <a title="Editar Factura" href="{{route('admin.bills.edit',$bill)}}"
-                                       class="me-2 btn btn-warning btn-company-danger">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a title="Detalles Factura" href="{{route('admin.bills.show',$bill)}}"
-                                       class=" btn btn-success"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </td>
+                                <img style="width: 50px; height: 50px" src="/public/{{Storage::url($product->imagen)}}" alt="">
+                                {{ $product->pivot->name }}</td>
+                            <td>$ {{ number_format(intval($product->pay)) }}</td>
+                            <td>{{ $product->pivot->quantity }}</td>
+                            <td>{{ $product->pivot->description }}</td>
+                            <td>$ {{ number_format(intval($product->pivot->subtotal)) }}</td>
                         </tr>
                     @endforeach
+
+
 
 
                     </tbody>

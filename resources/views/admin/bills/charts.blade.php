@@ -123,7 +123,6 @@
         <div class="card">
 
             <div class="card-body table-responsive">
-                <a href="{{route('admin.products.create')}}" class="text-decoration-none" title="Crear Producto">+</a>
                 <br>
                 <div class="row">
                     <div class="col-md-6">
@@ -134,6 +133,14 @@
                     </div>
                 </div>
 
+
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <canvas id="billsChart"></canvas>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -161,6 +168,31 @@
 @endsection
 
 @section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var entregadosCount = {!! json_encode($entregadosCount) !!};
+            var pendientesCount = {!! json_encode($pendientesCount) !!};
+
+            var chartCtx = document.getElementById('billsChart').getContext('2d');
+
+            var billsChart = new Chart(chartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Entregados', 'Pendientes'],
+                    datasets: [{
+                        data: [entregadosCount, pendientesCount],
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var salesByDayData = {!! json_encode($salesByDay) !!};
